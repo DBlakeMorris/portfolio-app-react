@@ -4,7 +4,7 @@ Hi there, I’m 𝑫𝒂𝒏𝒊𝒆𝒍 (but people call me 𝑫𝒂𝒏)! 👋
 
 **What You'll Find Here:**
 
-A a bit about me as well as my work experience, education and a detailed breakdown of most of my skills.
+A a bit about me as well as my work experience, education and a detailed breakdown including most of my skills.
 
 **Take a Look:**
 
