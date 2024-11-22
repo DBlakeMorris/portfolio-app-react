@@ -9,6 +9,7 @@ A a bit about me as well as my work experience, education and a detailed breakdo
 **Take a Look:**
 
 ![Screenshot 1](https://github.com/DBlakeMorris/portfolio-app-react/blob/main/screenshot-1.png)
+#
 ![Screenshot 2](https://github.com/DBlakeMorris/portfolio-app-react/blob/main/screenshot-2.png)
 
 **Live Website:**
