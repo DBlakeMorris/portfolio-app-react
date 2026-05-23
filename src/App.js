@@ -292,7 +292,7 @@ export default function Portfolio() {
                 onClick={() => window.location.href = 'mailto:danielblakemorris@gmail.com'}
                 className="text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 py-2 sm:py-3 flex-1 whitespace-nowrap"
               >
-                <Mail className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" /> Request Resume
+                <Mail className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" /> Get in Touch
               </Button>
               <Button
                 variant="secondary"
@@ -319,12 +319,12 @@ export default function Portfolio() {
           <Card className="bg-gray-900 border-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-sm">
             <CardContent className="p-4 sm:p-6">
               <p className="mb-4 text-gray-300">
-                A leading Natural Language Processing (NLP) Engineer on LinkedIn, and Data Science & Machine Learning (ML) specialist with over 4 years of end-to-end experience in training, evaluating, testing and deploying large scale models/systems. Experienced in orchestrating complicated data pipelines, system engineering on large-scale datasets and focused on building data pipelines, ML frameworks, information retrieval systems and custom LLMs & RAG systems. Collaborated with high-profile clients and government entities through academic partnerships with Queen's University, DkIT, Lancaster University and Loughborough University, as well as in the commercial sector with Reddit, Anthropic, Hugging Face, ISx4 and SVGC Ltd. Spearheaded and assisted successful sales pursuits resulting in over $10 million worth of engagements.
+              Leading Solutions Architect and AI Engineering Leader with 6+ years architecting and delivering enterprise-scale AI systems for Fortune 500 companies and UK government entities. Deep expertise in translating complex business requirements into custom LLMs, quantized RAG systems, and production-grade ML pipelines through complete solution lifecycles from requirements analysis to deployment. Extensive experience in pre-sales technical validation, stakeholder management, and post-sales delivery across complex enterprise environments. Collaborated with high-profile clients and government entities through strategic partnerships with Queen's University, DkIT, Lancaster University and Loughborough University, as well as leading commercial organizations including Reddit, Anthropic, Hugging Face, ISx4 and SVGC Ltd. Successfully led technical sales initiatives and solution delivery resulting in over $46 million in successful AI engagements, with proven expertise in competitive positioning, executive presentations, and C-level stakeholder relationships.
               </p>
               <ul className="list-disc list-inside mb-4 text-gray-300">
-                <li>An engineer at heart who likes to fix more than he breaks.</li>
-                <li>Researching and democratising niche text analytics understanding with DkIT and the Hugging Face community.</li>
-                <li>Consulted across the board, from startups to Fortune 10 Technology firms.</li>
+                <li>A solutions architect at heart who transforms complex technical challenges into scalable business outcomes.</li>
+                <li>Leading enterprise AI initiatives and stakeholder engagement across government entities, Fortune 500 companies, and cutting-edge technology platforms.</li>
+                <li>Delivered end-to-end solutions from pre-sales through deployment, spanning startups to Fortune 500 enterprises with proven commercial success.</li>
               </ul>
               <div className="flex space-x-4">
                 <Button variant="outline" onClick={() => window.open('https://www.linkedin.com/in/daniel-blake-morris', '_blank')} className="bg-white text-black hover:bg-gray-100">
@@ -340,21 +340,55 @@ export default function Portfolio() {
 
         <Section id="experience" title="Experience">
           <div className="space-y-12">
+
+          <Card className="bg-gray-900 border-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-sm">
+              <CardContent className="p-4 sm:p-6">
+                <h3 className="text-xl font-semibold mb-2 text-white">Solutions Architect</h3>
+                <p className="text-gray-400 mb-2">November 2025 to Present</p>
+                <p className="text-lg font-semibold mb-2 text-white">Arango</p>
+                <ul className="list-disc list-inside mb-4 text-gray-300">
+                  <li></li>
+                </ul>
+                <h4 className="text-lg font-semibold mb-2 text-white">Key Achievements:</h4>
+                <ul className="list-disc list-inside mb-4 text-gray-300">
+                  <li></li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gray-900 border-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-sm">
+              <CardContent className="p-4 sm:p-6">
+                <h3 className="text-xl font-semibold mb-2 text-white">CTO & Solutions Architect</h3>
+                <p className="text-gray-400 mb-2">April 2025 to Nov 2025</p>
+                <p className="text-lg font-semibold mb-2 text-white">Stealth Startup</p>
+                <ul className="list-disc list-inside mb-4 text-gray-300">
+                  <li>Leading technical architecture and solution design for AI-powered consumer platform.</li>
+                  <li>Managing complete solution lifecycle from technical strategy through stakeholder engagement.</li>
+                  <li>Directing pre-sales initiatives and partnership development with enterprise clients.</li>
+                </ul>
+                <h4 className="text-lg font-semibold mb-2 text-white">Key Achievements:</h4>
+                <ul className="list-disc list-inside mb-4 text-gray-300">
+                  <li>Secured strategic partnerships for market validation and platform integration.</li>
+                  <li>Led technical strategy development supporting funding acquisition efforts.</li>
+                  <li>Established enterprise client relationships and proof of concept frameworks.</li>
+                </ul>
+              </CardContent>
+            </Card>
+
             <Card className="bg-gray-900 border-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-sm">
               <CardContent className="p-4 sm:p-6">
                 <h3 className="text-xl font-semibold mb-2 text-white">AI/ML Engineer</h3>
-                <p className="text-gray-400 mb-2">September 2024 to Current</p>
+                <p className="text-gray-400 mb-2">September 2024 to September 2025</p>
                 <p className="text-lg font-semibold mb-2 text-white">Reddit</p>
                 <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li>Developed and deployed machine learning models for content analysis and moderation in alignment with company policies.</li>
                   <li>Implemented machine learning solutions to enhance content quality and user experience at scale, improving community moderation systems.</li>
                 </ul>
                 <h4 className="text-lg font-semibold mb-2 text-white">Key Achievements:</h4>
                 <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li>Designed and launched an automated system to assist in community guideline creation, significantly improving the new community onboarding process.</li>
-                  <li>Implemented a React-based HiTL tool with a Python FastAPI backend, including features like dynamic data visualisation, efficient data handling, and user-friendly interfaces for data annotators.</li>
-                  <li>Developed and deployed machine learning solutions for content analysis, achieving strong performance metrics across large-scale deployments.</li>
-                  <li>Enhanced existing systems through integration of advanced reasoning capabilities, leading to meaningful improvements in accuracy for critical use cases.</li>
+                  <li>Built custom LLMs for content moderation achieving 0.71 global precision with 0.06 improvement in high-risk detection.</li>
+                  <li>Developed Reddit's first subreddit rules generator and podcast generator (CEO-commissioned project, "Big Thinking" prize nominee).</li>
+                  <li>Created React/FastAPI tools for data annotation workflows and dynamic visualizations.</li>
+                  <li>Selected for Google's Gen AI initiative, building RAG systems for medical patient-trial matching.</li>
                 </ul>
               </CardContent>
             </Card>
@@ -362,47 +396,45 @@ export default function Portfolio() {
             <Card className="bg-gray-900 border-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-sm">
               <CardContent className="p-4 sm:p-6">
                 <h3 className="text-xl font-semibold mb-2 text-white">Alpha/Beta Tester (On-Call)</h3>
-                <p className="text-gray-400 mb-2">October 2024 to Current</p>
+                <p className="text-gray-400 mb-2">October 2024 to September 2025</p>
                 <p className="text-lg font-semibold mb-2 text-white">Anthropic</p>
                 <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li>Product tested: Haiku 3.5 (Oct "24), Claude Desktop (Oct "24).</li>
+                  <li>Product tested: Claude Code (May "25), Haiku 3.5 (Oct "24), Claude Desktop (Oct "24).</li>
                 </ul>
               </CardContent>
             </Card>
 
             <Card className="bg-gray-900 border-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-sm">
               <CardContent className="p-4 sm:p-6">
-                <h3 className="text-xl font-semibold mb-2 text-white">Senior ML & NLP Engineer</h3>
+                <h3 className="text-xl font-semibold mb-2 text-white">Senior AI/ML Engineer</h3>
                 <p className="text-gray-400 mb-2">January 2024 to July 2024</p>
                 <p className="text-lg font-semibold mb-2 text-white">ISx4</p>
                 <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li>Spearheaded all NLP, AI, and ML initiatives across product teams, driven fast strategic prototyping and delivered innovative solutions.</li>
-                  <li>Authored and presented Generative AI research papers with Queen's University Belfast and DKIT.</li>
-                  <li>Mentored and managed a great team of engineers in ML end-to-end development.</li>
+                  <li>Led all NLP/AI initiatives across product teams and mentored engineering teams.</li>
                 </ul>
                 <h4 className="text-lg font-semibold mb-2 text-white">Key Achievements:</h4>
                 <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li>Implemented an offline quantized RAG system using 'hkunlp/instructor-large' embeddings and Chroma vector store for corporate policies validation, achieving 84% retrieval accuracy on expert-validated queries. Reduced embedding model size from 500MB to 170MB through 8-bit quantization while maintaining data privacy.</li>
-                  <li>Feature engineered a multi-stage ML pipeline combining LightGBM with TF-IDF and custom email-specific features for automated email classification, achieving 86% accuracy (up from 63% baseline) in categorising expense reports, queries, and service requests across 10K+ emails, reducing manual triage time.</li>
-                  <li>Developed an expense claim validation system utilising domain-specific knowledge graphs and a novel embedding-based approach with neural networks, achieving 87% fraud detection accuracy on 2k monthly claims, reducing processing time.</li>
+                  <li>Built offline RAG system achieving 84% accuracy while reducing model size by 66% (500MB→170MB).</li>
+                  <li>Developed ML pipelines for email classification (86% accuracy, +23% improvement) and fraud detection (87% accuracy).</li>
+                  <li>Co-authored AI research papers with Queen's University Belfast and DKIT.</li>
                 </ul>
               </CardContent>
             </Card>
 
             <Card className="bg-gray-900 border-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-sm">
               <CardContent className="p-4 sm:p-6">
-                <h3 className="text-xl font-semibold mb-2 text-white">ML & NLP Scientist/Engineer</h3>
+                <h3 className="text-xl font-semibold mb-2 text-white">ML & NLP Engineer</h3>
                 <p className="text-gray-400 mb-2">October 2022 to January 2024</p>
                 <p className="text-lg font-semibold mb-2 text-white">Loughborough University | SVGC Ltd</p>
                 <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li>Developed and managed multiple AI-related projects in a Knowledge Transfer Partnership (KTP) with SVGC Ltd, delivering NLP solutions to high-profile government clients.</li>
-                  <li>Conducted thorough requirements analyses, user experience assessments, and stakeholder presentations to inform, end-to-end train, evaluate, test and containerise NLP/ML solutions for classified government use cases.</li>
+                  <li>Led Knowledge Transfer Partnership delivering NLP solutions for classified government clients</li>
+                  <li>Conducted thorough requirements analyses, user experience assessments, and stakeholder presentations to inform, train, evaluate, test and containerise NLP/ML solutions for classified government use cases.</li>
                 </ul>
                 <h4 className="text-lg font-semibold mb-2 text-white">Key Achievements:</h4>
                 <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li>Pioneered a Semantic Role Labelling system using transformers with multi-head attention for GDPR detection, achieving 78% F1-score and improving sensitivity detection accuracy by 4% in classified documents.</li>
-                  <li>Engineered a secure offline quantized RAG system leveraging 'intfloat/e5-large-v2' embeddings and custom knowledge bases for classified document analysis, achieving 84% retrieval accuracy on expert-validated queries across hundreds of docs.</li>
-                  <li>Architected a topic modelling system combining hierarchical Dirichlet processes with dense embeddings, processing thousands of classified documents to identify 20+ distinct topic clusters with 84% coherence. Reduced batch analysis time while increasing topic detection precision by approx. 10%.</li>
+                <li>Built secure offline RAG system achieving 84% retrieval accuracy on classified documents.</li>
+                <li>Developed GDPR detection system (78% F1-score) and topic modeling for 20+ document clusters.</li>
+                <li>Managed end-to-end ML pipeline from requirements to containerized deployment.</li>
                 </ul>
               </CardContent>
             </Card>
@@ -413,12 +445,13 @@ export default function Portfolio() {
                 <p className="text-gray-400 mb-2">October 2020 to October 2022</p>
                 <p className="text-lg font-semibold mb-2 text-white">Lancaster University</p>
                 <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li>Volunteered to contribute to Linguistics research groups, leading end-to-end development of NLU and NLP models for diverse funded projects, from research to deployment.</li>
+                  <li>Volunteered to contribute in NLP model development for funded linguistics research projects.</li>
                 </ul>
                 <h4 className="text-lg font-semibold mb-2 text-white">Key Achievements:</h4>
                 <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li>Engineered a historical authorship attribution system using Bi-LSTMs and CRFs, achieving 63% F1-score in identifying medieval scribes (1420-1484) through innovative linguistic feature extraction with clause relativisation patterns across 50+ Paston family letters.</li>
-                  <li>Developed a sentiment analysis system for social media using BERT fine-tuning and Critical Discourse Analysis, achieving 84% F1-score (up from 78%) on 8-class emotion classification. Improved detection of emerging slang and context-dependent expressions by 15%, validated across 100K+ posts.</li>
+                  <li>Built medieval authorship attribution system (63% F1-score) analyzing 15th-century manuscripts.</li>
+                  <li>Developed social media sentiment analysis achieving 84% F1-score across 100K+ posts (+6% improvement).</li>
+                  <li>Enhanced colloquialism and context detection by 15% using BERT fine-tuning techniques.</li>
                 </ul>
               </CardContent>
             </Card>
@@ -428,18 +461,19 @@ export default function Portfolio() {
         <Section id="education" title="Education">
           <Card className="bg-gray-900 border-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-sm">
             <CardHeader>
-              <CardTitle className="text-white">Master's in Computational Linguistics</CardTitle>
+              <CardTitle className="text-white">Master's degree in Computational Linguistics & Discourse Studies</CardTitle>
               <p className="text-sm text-gray-400">Lancaster University</p>
             </CardHeader>
-            <CardContent className="p-4 sm:p-6">
+            <CardContent>
               <p className="text-gray-300">
                 Areas of Focus:
               </p>
               <ul className="list-disc list-inside text-gray-300 mt-2">
-                <li>Natural Language Processing.</li>
-                <li>Knowledge Graphs & Ontologies.</li>
-                <li>Discourse Analysis.</li>
-                <li>Corpus Linguistics.</li>
+                <li>Natural Language Processing</li>
+                <li>Knowledge Graphs & Ontologies</li>
+                <li>Forensic Linguistics</li>
+                <li>Discourse Analysis</li>
+                <li>Corpus Linguistics</li>
               </ul>
             </CardContent>
           </Card>

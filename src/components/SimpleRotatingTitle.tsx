@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 const SimpleRotatingTitle: React.FC = () => {
   const titles: string[] = [
-    "ML & NLP Engineer",
-    "Machine Learning Specialist",
-    "Natural Language AI Expert",
-    "Deep Learning Engineer"
+    "AI Solutions Architect",
+    "Agentic AI Engineer",
+    "Forward Deployed Engineer",
   ];
   
   const [currentIndex, setCurrentIndex] = useState<number>(0);

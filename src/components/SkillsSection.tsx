@@ -48,43 +48,43 @@ const Badge: React.FC<CardProps> = ({ children, className = "" }) => (
 const SkillsSection = () => {
  const skillCategories = [
    {
+     name: "Programming Languages",
+     skills: ["Python", "JavaScript/TypeScript"],
+     icon: <Code className="h-6 w-6" />,
+   },
+   {
      name: "ML & AI",
-     skills: ["ML", "Deep Learning & Neural Networks", "NLP & NLU", "LLMs & RAG", "Content Moderation", "MLOps & Model Deployment", "Knowledge Base Construction"],
+     skills: ["ML", "Deep Learning & Neural Networks", "NLP & NLU", "LLMs & RAG", "MLOps & Model Deployment", "Knowledge Base Construction", "Ontologies"],
      icon: <Brain className="h-6 w-6" />,
    },
    {
      name: "Data Management",
-     skills: ["SQL", "Vector Databases"],
+     skills: ["SQL", "BigQuery", "MongoDB", "Neo4j", "Snowflake", "Vector Databases"],
      icon: <Database className="h-6 w-6" />,
    },
    {
      name: "Cloud & Infrastructure",
-     skills: ["Docker", "Kubernetes", "Git", "CI/CD", "Distributed Systems", "AWS", "Azure", "GCP"],
+     skills: ["Docker", "Kubernetes", "Git", "CI/CD", "Distributed Systems", "AWS Sagemaker", "AzureML", "GCP Vertex AI"],
      icon: <Cloud className="h-6 w-6" />,
    },
    {
-     name: "Programming Languages",
-     skills: ["Python", "R", "Java", "JavaScript/TypeScript"],
-     icon: <Code className="h-6 w-6" />,
-   },
-   {
-     name: "ML & Data Frameworks",
-     skills: ["PyTorch", "TensorFlow", "Gensim", "SpaCy", "NLTK", "Pandas", "NumPy", "Scikit-learn", "SAS"],
+     name: "Data Frameworks",
+     skills: ["PyTorch", "TensorFlow", "Gensim", "SpaCy", "NLTK", "Pandas", "NumPy", "Hugging Face", "Scikit-learn", "SAS", "Aristotle"],
      icon: <Cpu className="h-6 w-6" />,
    },
    {
      name: "Web Development",
-     skills: ["React", "HTML/CSS", "REST APIs"],
+     skills: ["React", "Tailwind", "HTML/CSS", "REST APIs"],
      icon: <Globe className="h-6 w-6" />,
    },
    {
      name: "ML Tools & Development",
-     skills: ["Gradio", "Streamlit", "MLFlow", "Weight & Biases", "Langchain", "Chroma"],
+     skills: ["Gradio", "Streamlit", "MLFlow", "Weight & Biases", "Langchain", "FastAPI", "LangGraph", "OpenAI SDK", "uv", "Pyright", "Opik"],
      icon: <LayoutDashboard className="h-6 w-6" />,
    },
    {
-     name: "Professional Skills",
-     skills: ["Technical Leadership", "A/B Testing", "Technical Writing", "Project Management (Jira)", "Stakeholder Communication", "Agile"],
+     name: "Solutions & Leadership",
+     skills: ["Solution Architecture", "Pre-Sales & Post-Sales", "Technical Leadership", "Stakeholder Management", "Executive Presentations", "Requirements Analysis", "A/B Testing", "Technical Writing", "Project Management", "Agile"],
      icon: <Users className="h-6 w-6" />,
    }
  ]
