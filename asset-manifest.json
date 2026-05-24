@@ -1,7 +1,8 @@
 {
   "files": {
-    "main.css": "/portfolio-app-react/static/css/main.75f77b56.css",
-    "main.js": "/portfolio-app-react/static/js/main.ab7dca96.js",
+    "main.css": "/portfolio-app-react/static/css/main.6911c7c0.css",
+    "main.js": "/portfolio-app-react/static/js/main.29a0dc59.js",
+    "static/media/peacock_design.mp4": "/portfolio-app-react/static/media/peacock_design.4ce91e9aecfd46c3c918.mp4",
     "static/media/oxford-university-logo-university-of-oxford-college-school-student-education-united-kingdom-crest-png-clipart.jpg": "/portfolio-app-react/static/media/oxford-university-logo-university-of-oxford-college-school-student-education-united-kingdom-crest-png-clipart.1704454b9603417777b4.jpg",
     "static/media/Queens_Red_Log.svg.png": "/portfolio-app-react/static/media/Queens_Red_Log.svg.dd57afb79966da9b7c18.png",
     "static/media/FCO-logo-footer-trans.png": "/portfolio-app-react/static/media/FCO-logo-footer-trans.89b3e429101f69edb955.png",
@@ -16,11 +17,11 @@
     "static/media/logo-masterbrand-white-transparent.webp": "/portfolio-app-react/static/media/logo-masterbrand-white-transparent.221745839bd56858ffbe.webp",
     "static/media/favicon.svg": "/portfolio-app-react/static/media/favicon.0638ec7f7d57a8e06438924598bd0661.svg",
     "index.html": "/portfolio-app-react/index.html",
-    "main.75f77b56.css.map": "/portfolio-app-react/static/css/main.75f77b56.css.map",
-    "main.ab7dca96.js.map": "/portfolio-app-react/static/js/main.ab7dca96.js.map"
+    "main.6911c7c0.css.map": "/portfolio-app-react/static/css/main.6911c7c0.css.map",
+    "main.29a0dc59.js.map": "/portfolio-app-react/static/js/main.29a0dc59.js.map"
   },
   "entrypoints": [
-    "static/css/main.75f77b56.css",
-    "static/js/main.ab7dca96.js"
+    "static/css/main.6911c7c0.css",
+    "static/js/main.29a0dc59.js"
   ]
 }
