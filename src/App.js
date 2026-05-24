@@ -507,7 +507,7 @@ const products = [
     ] 
   },
   { 
-    name: 'DL: Tessellate', tagline: 'Knowledge Graph-Driven Predictive Nutrition Architecture', description: 'An agentic recipe and dietary engine powered by a graph-structured domain database. It cross-references real-time bio-composition telemetries from David Lloyd Boditrax scans to generate hyper-personalized, goal-optimized nutritional vectors. The engine dynamically mitigates gym member churn by programmatically lowering dieting friction—synthesizing multi-variable logic constraints including complex allergen profiles, localized ingredient sourcing logistics, and sustainability algorithms designed to neutralize household food waste.', 
+    name: 'David LLoyd - Tessellate', tagline: 'Knowledge Graph-Driven Predictive Nutrition Architecture', description: 'An agentic recipe and dietary engine powered by a graph-structured domain database. It cross-references real-time bio-composition telemetries from David Lloyd Boditrax scans to generate hyper-personalized, goal-optimized nutritional vectors. The engine dynamically mitigates gym member churn by programmatically lowering dieting friction—synthesizing multi-variable logic constraints including complex allergen profiles, localized ingredient sourcing logistics, and sustainability algorithms designed to neutralize household food waste.', 
     useCases: [
       'Commercial Fitness Operations — automated, hyper-personalized retention engines mapped to biometric data hardware', 
       'Precision Dietetics — localized supply-chain integrated recipe generation accounting for micro-constraints and zero-waste macro logic'
