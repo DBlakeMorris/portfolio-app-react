@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Particles from "react-particles"
 import { loadSlim } from "tsparticles-slim"
-import { Mail, Calendar, Linkedin, Github, ArrowUp } from 'lucide-react'
+import { Mail, Calendar, Linkedin, Github } from 'lucide-react'
 
 import redditLogo from './assets/logos/Reddit-New-2023-Logo-Vector.svg-.png'
 import arangoLogo from './assets/logos/favicon.svg'
@@ -50,17 +50,16 @@ const GlobalStyles = () => (
   <style>{`
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300;1,400&family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; overflow: hidden; }
+    html, body { height: 100%; overflow: hidden; width: 100%; }
     body {
       background: ${C.racing}; color: ${C.cream};
       font-family: 'EB Garamond', Georgia, serif;
       font-size: 18px; line-height: 1.7;
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
     }
     #root { height: 100%; }
     ::selection { background: ${C.eton}; color: ${C.racing}; }
-    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
     ::-webkit-scrollbar-track { background: ${C.racing}; }
     ::-webkit-scrollbar-thumb { background: ${C.etonDim}; }
 
@@ -97,26 +96,30 @@ const GlobalStyles = () => (
     }
     .btn-sm:hover { border-color: ${C.eton}; color: ${C.eton}; }
 
-    /* Page container — fills screen, scrollable internally */
+    /* Page container — fills screen space under header, scrollable internally */
     .page {
       position: absolute; inset: 0;
       overflow-y: auto; overflow-x: hidden;
-      padding-top: 64px;
       -webkit-overflow-scrolling: touch;
+      display: flex;
+      flex-direction: column;
     }
+    
+    /* Dedicated variation to guarantee absolute zero scroll on Home Screen */
+    .page.no-scroll {
+      overflow: hidden;
+    }
+    
     .page-inner {
-      min-height: calc(100vh - 64px);
-      display: flex; flex-direction: column;
-      justify-content: flex-start;
-      padding: 3rem 2rem 4rem;
-      max-width: 960px; margin: 0 auto;
       width: 100%;
+      max-width: 960px; 
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+      display: flex; 
+      flex-direction: column;
+      justify-content: flex-start;
     }
     .page-inner.wide { max-width: 1200px; }
-    .page-inner.centered {
-      align-items: center; justify-content: center;
-      text-align: center; min-height: 100vh; padding-top: 0;
-    }
 
     /* Products */
     .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1px; background: ${C.border}; }
@@ -157,7 +160,7 @@ const GlobalStyles = () => (
     .testimonial-title { font-size: 0.9rem; font-style: italic; color: ${C.creamFaint}; margin-top: 0.2rem; }
 
     /* Logo reel */
-    .logo-reel-wrap { overflow: hidden; border-top: 1px solid ${C.border}; padding: 14px 0; background: rgba(8,24,8,0.97); }
+    .logo-reel-wrap { overflow: hidden; border-top: 1px solid ${C.border}; padding: 14px 0; background: rgba(8,24,8,0.97); width: 100%; flex-shrink: 0; }
     @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     .logo-track { display: flex; width: max-content; animation: scroll-left 40s linear infinite; }
     .logo-track:hover { animation-play-state: paused; }
@@ -173,19 +176,25 @@ const GlobalStyles = () => (
     /* ── MOBILE ── */
     @media (max-width: 768px) {
       body { font-size: 16px; }
-      .nav-link { font-size: 0.58rem; letter-spacing: 0.1em; padding: 5px 10px; }
-      .section-title { font-size: 0.6rem; letter-spacing: 0.22em; margin-bottom: 1.75rem; }
-      .btn-primary, .btn-ghost { padding: 13px 22px; font-size: 0.58rem; letter-spacing: 0.14em; }
+      .nav-link { font-size: 0.65rem; letter-spacing: 0.12em; padding: 6px 12px; }
+      .section-title { font-size: 0.65rem; letter-spacing: 0.22em; margin-bottom: 1.75rem; }
+      .btn-primary, .btn-ghost { padding: 12px 20px; font-size: 0.6rem; letter-spacing: 0.12em; width: 100%; max-width: 290px; }
       .product-grid { grid-template-columns: 1fr; }
       .product-card { padding: 1.5rem; }
-      .speaking-row { gap: 1rem; padding: 1.25rem 0 1.25rem 1.5rem; }
+      .speaking-row { gap: 0.5rem; padding: 1.25rem 0 1.25rem 1.25rem; flex-direction: column; }
+      .speaking-year { width: auto; padding-top: 0; }
       .testimonial { padding: 1.25rem 1.25rem; }
-      .page-inner { padding: 2rem 1.25rem 3rem; }
-      .stat-val { font-size: 2.5rem; }
+      .page-inner { padding: 1.5rem 1rem 3rem; }
+      .stat-val { font-size: 2.3rem; }
+      
+      /* Mobile optimization for statistics block grid transformation */
+      .about-stats-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
+      }
     }
     @media (max-width: 480px) {
-      .nav-link { font-size: 0.5rem; letter-spacing: 0.08em; padding: 4px 7px; }
-      .btn-primary, .btn-ghost { padding: 12px 18px; font-size: 0.52rem; }
+      .nav-link { font-size: 0.58rem; letter-spacing: 0.08em; padding: 4px 8px; }
     }
   `}</style>
 )
@@ -240,45 +249,63 @@ const pageVariants = {
 }
 
 // ── Pages ──────────────────────────────────────────────────────────────────────
-const HomePage = ({ showSplash }) => (
-  <div className="page">
-    <motion.div
-      variants={pageVariants} initial="initial" animate="animate" exit="exit"
-      style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', justifyContent: 'space-between' }}
-    >
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '2rem 1.5rem 3rem' }}>
-        <motion.div
-          initial={{ scaleX: 0 }} animate={{ scaleX: showSplash ? 0 : 1 }}
-          transition={{ duration: 1.2, delay: 0.3 }}
-          style={{ width: 48, height: 1, background: C.parchment, marginBottom: '2rem', transformOrigin: 'center' }}
-        />
-        <h1 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 'clamp(2.8rem, 9vw, 7rem)', fontWeight: 300, letterSpacing: '0.08em', color: C.cream, lineHeight: 1.05, marginBottom: '1.75rem' }}>
-          D.B. Morris
-        </h1>
-        <p style={{ fontStyle: 'italic', color: C.creamFaint, maxWidth: 420, marginBottom: '3rem', fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)', lineHeight: 1.8 }}>
-          Architecting intelligence at the edge of what graphs can know.
-        </p>
-        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <button className="btn-primary" onClick={() => window.location.href = 'mailto:danielblakemorris@gmail.com'}>
-            <Mail size={13} /> Get in Touch
-          </button>
-          <button className="btn-ghost" onClick={() => window.open('https://calendly.com/danielblakemorris/30min', '_blank')}>
-            <Calendar size={13} /> Book a Consultation
-          </button>
+const HomePage = ({ showSplash }) => {
+  const [isMobile, setIsMobile] = useState(false)
+  
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  return (
+    <div className="page no-scroll">
+      <motion.div
+        variants={pageVariants} initial="initial" animate="animate" exit="exit"
+        style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%', justifyContent: 'space-between' }}
+      >
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '1rem 1.25rem' }}>
+          <motion.div
+            initial={{ scaleX: 0 }} animate={{ scaleX: showSplash ? 0 : 1 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
+            style={{ width: 48, height: 1, background: C.parchment, marginBottom: '1.5rem', transformOrigin: 'center' }}
+          />
+          <h1 style={{ 
+            fontFamily: "'Cormorant Garamond', Georgia, serif", 
+            fontSize: isMobile ? '3rem' : 'clamp(2.5rem, 8vw, 6.5rem)', 
+            fontWeight: 300, 
+            letterSpacing: '0.08em', 
+            color: C.cream, 
+            lineHeight: 1.1, 
+            marginBottom: '1rem' 
+          }}>
+            D.B. Morris
+          </h1>
+          <p style={{ fontStyle: 'italic', color: C.creamFaint, maxWidth: 420, marginBottom: '2rem', fontSize: '1rem', lineHeight: 1.6 }}>
+            Architecting intelligence at the edge of what graphs can know.
+          </p>
+          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', width: '100%' }}>
+            <button className="btn-primary" onClick={() => window.location.href = 'mailto:danielblakemorris@gmail.com'}>
+              <Mail size={13} /> Get in Touch
+            </button>
+            <button className="btn-ghost" onClick={() => window.open('https://calendly.com/danielblakemorris/30min', '_blank')}>
+              <Calendar size={13} /> Book a Consultation
+            </button>
+          </div>
         </div>
-      </div>
-      <LogoReel />
-    </motion.div>
-  </div>
-)
+        <LogoReel />
+      </motion.div>
+    </div>
+  )
+}
 
 const AboutPage = () => (
   <div className="page">
-    <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
+    <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ width: '100%' }}>
       <div className="page-inner">
         <div className="section-title">About</div>
 
-        {/* Bio */}
         <div style={{ marginBottom: '3rem' }}>
           <p style={{ fontSize: '1.15rem', lineHeight: 1.85, color: C.cream, marginBottom: '1.5rem' }}>
             AI Engineering Leader and Solutions Architect with 6+ years delivering enterprise-scale AI systems across Fortune 500 companies and UK government entities including 10 Downing Street.
@@ -295,8 +322,7 @@ const AboutPage = () => (
           </div>
         </div>
 
-        {/* Stats — horizontal row on desktop, 2x2 grid on mobile */}
-        <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: '2.5rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '2rem' }}>
+        <div className="about-stats-grid" style={{ borderTop: `1px solid ${C.border}`, paddingTop: '2.5rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '2rem' }}>
           {[
             { val: '$46M+', label: 'AI Engagements' },
             { val: '10', label: 'Publications' },
@@ -326,7 +352,7 @@ const products = [
 
 const ProductsPage = () => (
   <div className="page">
-    <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
+    <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ width: '100%' }}>
       <div className="page-inner wide">
         <div className="section-title">Products</div>
         <div className="product-grid">
@@ -356,7 +382,7 @@ const speakingEvents = [
 
 const SpeakingPage = () => (
   <div className="page">
-    <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
+    <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ width: '100%' }}>
       <div className="page-inner">
         <div className="section-title">Speaking</div>
         <div className="speaking-timeline">
@@ -391,7 +417,7 @@ const publications = [
 
 const PublicationsPage = () => (
   <div className="page">
-    <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
+    <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ width: '100%' }}>
       <div className="page-inner">
         <div className="section-title">Publications</div>
         {publications.map((pub, i) => (
@@ -415,7 +441,7 @@ const testimonials = [
 
 const TestimonialsPage = () => (
   <div className="page">
-    <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
+    <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ width: '100%' }}>
       <div className="page-inner">
         <div className="section-title">Testimonials</div>
         {testimonials.map((t, i) => (
@@ -432,7 +458,6 @@ const TestimonialsPage = () => (
             </div>
           </div>
         ))}
-        {/* Footer inside testimonials page */}
         <div style={{ marginTop: '3rem', borderTop: `1px solid ${C.border}`, paddingTop: '2rem', display: 'flex', justifyContent: 'center', gap: '0.75rem' }}>
           <button className="btn-sm" onClick={() => window.location.href = 'mailto:danielblakemorris@gmail.com'}><Mail size={12} /></button>
           <button className="btn-sm" onClick={() => window.open('https://www.linkedin.com/in/daniel-blake-morris', '_blank')}><Linkedin size={12} /></button>
@@ -453,7 +478,6 @@ const NAV_ITEMS = ['home', 'about', 'products', 'speaking', 'publications', 'tes
 export default function Portfolio() {
   const [showSplash, setShowSplash] = useState(true)
   const [activePage, setActivePage] = useState('home')
-  const [isScrolled, setIsScrolled] = useState(false)
 
   const ActivePage = PAGES[activePage]
 
@@ -475,10 +499,12 @@ export default function Portfolio() {
         }}>
           <nav style={{
             maxWidth: 1100, margin: '0 auto', height: '100%',
-            display: 'flex', justifyContent: 'center', alignItems: 'center',
+            display: 'flex', justifyContent: 'flex-start', alignItems: 'center',
             padding: '0 1rem', overflowX: 'auto',
-            msOverflowStyle: 'none', scrollbarWidth: 'none',
+            WebkitOverflowScrolling: 'touch',
           }}>
+            {/* Mobile padding spacer to ensure first link doesn't run flat against viewport edge */}
+            <div style={{ width: 4, flexShrink: 0 }} />
             {NAV_ITEMS.map((s) => (
               <button
                 key={s}
@@ -488,11 +514,13 @@ export default function Portfolio() {
                 {s}
               </button>
             ))}
+            {/* Mobile padding spacer to ensure final link doesn't run flat against viewport edge */}
+            <div style={{ width: 16, flexShrink: 0 }} />
           </nav>
         </header>
 
         {/* ── PAGE CONTENT ── */}
-        <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
+        <div style={{ flex: 1, position: 'relative' }}>
           <AnimatePresence mode="wait">
             <ActivePage key={activePage} showSplash={showSplash} />
           </AnimatePresence>
