@@ -28,7 +28,6 @@ const C = {
   border:'rgba(242,234,216,0.08)',
 }
 
-// ── PEACOCK SPLASH ─────────────────────────────────────────────────────────────
 const SplashScreen = ({ onDone }) => {
   useEffect(() => {
     const t = setTimeout(onDone, 2200)
@@ -42,23 +41,22 @@ const SplashScreen = ({ onDone }) => {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       style={{ position: 'fixed', inset: 0, zIndex: 9999, background: '#000' }}
     >
-      {/* Loading bar — parchment, sweeps left to right over 2s */}
       <motion.div
         style={{
           position: 'absolute', bottom: 0, left: 0,
-          height: '1px', width: '100%',
-          background: `linear-gradient(to right, transparent, ${C.parchment}, transparent)`,
+          height: '2px', width: '100%',
+          background: C.parchment,
           transformOrigin: 'left',
+          boxShadow: `0 0 8px ${C.parchment}`,
         }}
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
-        transition={{ duration: 1.9, delay: 0.15, ease: [0.4, 0, 0.2, 1] }}
+        transition={{ duration: 1.8, delay: 0, ease: 'linear' }}
       />
     </motion.div>
   )
 }
 
-// ── Global Styles ──────────────────────────────────────────────────────────────
 const GlobalStyles = () => (
   <style>{`
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300;1,400&family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
@@ -131,6 +129,44 @@ const GlobalStyles = () => (
 
     .grain-overlay { position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.28; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"); }
     #tsparticles { position: fixed !important; }
+
+    /* ── MOBILE ─────────────────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      /* Nav — scrollable strip, smaller text */
+      .nav-link { font-size: 0.46rem; letter-spacing: 0.12em; padding: 4px 8px; }
+
+      /* Section titles */
+      .section-title { font-size: 0.5rem; letter-spacing: 0.25em; margin-bottom: 2rem; }
+
+      /* Buttons — full width on mobile */
+      .btn-primary, .btn-ghost { width: 100%; max-width: 320px; padding: 13px 0; font-size: 0.52rem; }
+
+      /* Products — single column */
+      .product-grid { grid-template-columns: 1fr; }
+      .product-card { padding: 1.75rem; }
+
+      /* Speaking — tighter */
+      .speaking-row { gap: 1rem; padding: 1.5rem 0 1.5rem 1.5rem; }
+      .speaking-year { width: 2.5rem; }
+      .speaking-event { font-size: 0.75rem; }
+      .speaking-topic { font-size: 0.85rem; }
+
+      /* Publications */
+      .pub-title { font-size: 0.88rem; }
+
+      /* Testimonials */
+      .testimonial { padding: 1.5rem 1.25rem; }
+      .testimonial-quote { font-size: 0.95rem; }
+
+      /* Stats */
+      .stat-val { font-size: 2.2rem; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-link { font-size: 0.4rem; letter-spacing: 0.08em; padding: 4px 6px; }
+      .product-card { padding: 1.25rem; }
+      .testimonial { padding: 1.25rem 1rem; }
+    }
   `}</style>
 )
 
@@ -254,24 +290,27 @@ export default function Portfolio() {
       <AnimatePresence>{showSplash && <SplashScreen onDone={() => setShowSplash(false)} />}</AnimatePresence>
 
       <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
+
+        {/* HEADER */}
         <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, background: isScrolled ? 'rgba(8,24,8,0.97)' : 'transparent', borderBottom: isScrolled ? `1px solid ${C.border}` : 'none', backdropFilter: isScrolled ? 'blur(20px)' : 'none', transition: 'all 0.4s ease' }}>
-          <nav style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', justifyContent: 'center', alignItems: 'center', height: 64, padding: '0 2rem' }}>
+          <nav style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', justifyContent: 'center', alignItems: 'center', height: 56, padding: '0 1rem', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
             {navItems.map((s) => <button key={s} className={`nav-link ${activeSection === s ? 'active' : ''}`} onClick={() => scrollTo(s)}>{s}</button>)}
           </nav>
         </header>
 
+        {/* HOME */}
         <section id="home" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: showSplash ? 0 : 1, y: showSplash ? 20 : 0 }}
             transition={{ duration: 1.3, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '80px 2rem 3rem' }}
+            style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '80px 1.5rem 3rem' }}
           >
             <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: showSplash ? 0 : 1 }} transition={{ duration: 1.2, delay: 0.5 }} style={{ width: 48, height: 1, background: C.parchment, marginBottom: '2.2rem', transformOrigin: 'center' }} />
-            <h1 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 'clamp(3.5rem, 8vw, 7rem)', fontWeight: 300, letterSpacing: '0.08em', color: C.cream, lineHeight: 1.05, marginBottom: '1rem' }}>D.B. Morris</h1>
-            <div style={{ fontFamily: "'Cinzel', serif", fontSize: '0.6rem', letterSpacing: '0.35em', color: C.creamDim, textTransform: 'uppercase', marginBottom: '1.25rem' }}><SimpleRotatingTitle /></div>
-            <p style={{ fontStyle: 'italic', color: C.creamFaint, maxWidth: 460, marginBottom: '3rem', fontSize: '1rem', lineHeight: 1.8 }}>Architecting intelligence at the edge of what graphs can know.</p>
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <h1 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 'clamp(3rem, 8vw, 7rem)', fontWeight: 300, letterSpacing: '0.08em', color: C.cream, lineHeight: 1.05, marginBottom: '1rem' }}>D.B. Morris</h1>
+            <div style={{ fontFamily: "'Cinzel', serif", fontSize: 'clamp(0.45rem, 1.5vw, 0.6rem)', letterSpacing: '0.35em', color: C.creamDim, textTransform: 'uppercase', marginBottom: '1.25rem' }}><SimpleRotatingTitle /></div>
+            <p style={{ fontStyle: 'italic', color: C.creamFaint, maxWidth: 460, marginBottom: '3rem', fontSize: 'clamp(0.9rem, 2.5vw, 1rem)', lineHeight: 1.8, padding: '0 1rem' }}>Architecting intelligence at the edge of what graphs can know.</p>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', width: '100%', padding: '0 1rem' }}>
               <button className="btn-primary" onClick={() => window.location.href = 'mailto:danielblakemorris@gmail.com'}><Mail size={12} /> Get in Touch</button>
               <button className="btn-ghost" onClick={() => window.open('https://calendly.com/danielblakemorris/30min', '_blank')}><Calendar size={12} /> Book a Consultation</button>
             </div>
@@ -279,10 +318,11 @@ export default function Portfolio() {
           <LogoReel />
         </section>
 
-        <section id="about" style={{ padding: '7rem 2rem' }}>
+        {/* ABOUT */}
+        <section id="about" style={{ padding: '5rem 1.5rem' }}>
           <div style={{ maxWidth: 960, margin: '0 auto' }}>
             <div className="section-title">About</div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'start' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '3rem', alignItems: 'start' }}>
               <div>
                 <p style={{ fontSize: '1.1rem', lineHeight: 1.85, color: C.cream, marginBottom: '1.5rem' }}>AI Engineering Leader and Solutions Architect with 6+ years delivering enterprise-scale AI systems across Fortune 500 companies and UK government entities including 10 Downing Street.</p>
                 <p style={{ fontSize: '1rem', lineHeight: 1.8, color: C.creamDim, marginBottom: '1.5rem' }}>Currently Lead Solutions Engineer — Applied AI, EMEA at Arango, founding and leading the Innovation Lab — building Contextus, Sentinel and Arbiter, a suite of graph-guided agentic AI platforms. Previously at Reddit, architecting LLM infrastructure serving millions of users.</p>
@@ -292,7 +332,7 @@ export default function Portfolio() {
                   <button className="btn-sm" onClick={() => window.open('https://github.com/DBlakeMorris', '_blank')}><Github size={11} /> GitHub</button>
                 </div>
               </div>
-              <div style={{ borderLeft: `1px solid ${C.border}`, paddingLeft: '3rem' }}>
+              <div style={{ borderLeft: `1px solid ${C.border}`, paddingLeft: '2rem' }}>
                 {[{ val: '$46M+', label: 'AI Engagements' }, { val: '10', label: 'Publications' }, { val: '6+', label: 'Speaking Events' }, { val: '6+', label: 'Years Experience' }].map((s, i) => (
                   <div key={i} style={{ marginBottom: '2.25rem' }}><div className="stat-val">{s.val}</div><div className="stat-label">{s.label}</div></div>
                 ))}
@@ -301,7 +341,8 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <section id="products" style={{ padding: '7rem 2rem' }}>
+        {/* PRODUCTS */}
+        <section id="products" style={{ padding: '5rem 1.5rem' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <div className="section-title">Products</div>
             <div className="product-grid">
@@ -318,7 +359,8 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <section id="speaking" style={{ padding: '7rem 2rem' }}>
+        {/* SPEAKING */}
+        <section id="speaking" style={{ padding: '5rem 1.5rem' }}>
           <div style={{ maxWidth: 860, margin: '0 auto' }}>
             <div className="section-title">Speaking</div>
             <div className="speaking-timeline">
@@ -332,7 +374,8 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <section id="publications" style={{ padding: '7rem 2rem' }}>
+        {/* PUBLICATIONS */}
+        <section id="publications" style={{ padding: '5rem 1.5rem' }}>
           <div style={{ maxWidth: 860, margin: '0 auto' }}>
             <div className="section-title">Publications</div>
             {publications.map((pub, i) => (
@@ -344,7 +387,8 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <section id="testimonials" style={{ padding: '7rem 2rem' }}>
+        {/* TESTIMONIALS */}
+        <section id="testimonials" style={{ padding: '5rem 1.5rem' }}>
           <div style={{ maxWidth: 860, margin: '0 auto' }}>
             <div className="section-title">Testimonials</div>
             {testimonials.map((t, i) => (
@@ -359,7 +403,8 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <footer style={{ borderTop: `1px solid ${C.border}`, padding: '2.5rem 2rem', textAlign: 'center' }}>
+        {/* FOOTER */}
+        <footer style={{ borderTop: `1px solid ${C.border}`, padding: '2.5rem 1.5rem', textAlign: 'center' }}>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
             <button className="btn-sm" onClick={() => window.location.href = 'mailto:danielblakemorris@gmail.com'}><Mail size={11} /></button>
             <button className="btn-sm" onClick={() => window.open('https://www.linkedin.com/in/daniel-blake-morris', '_blank')}><Linkedin size={11} /></button>
