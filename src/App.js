@@ -27,19 +27,77 @@ const C = {
   border:'rgba(242,234,216,0.08)',
 }
 
+
 // ── Splash ─────────────────────────────────────────────────────────────────────
 const SplashScreen = ({ onDone }) => {
-  useEffect(() => { const t = setTimeout(onDone, 2200); return () => clearTimeout(t) }, [onDone])
+  useEffect(() => { 
+    const t = setTimeout(onDone, 3000); 
+    return () => clearTimeout(t) 
+  }, [onDone])
+
   return (
     <motion.div
       initial={{ opacity: 1 }} exit={{ opacity: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      style={{ position: 'fixed', inset: 0, zIndex: 9999, background: '#000' }}
+      style={{ 
+        position: 'fixed', 
+        inset: 0, 
+        zIndex: 9999, 
+        background: '#000',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden'
+      }}
     >
+      {/* THE ASYMMETRICAL CROP LAYER:
+        1. 9% Top: Slices perfectly through the thin top grey bar while keeping the head safe.
+        2. 22% Right / 22% Left: Left completely untouched since they are already perfect.
+        3. 14% Bottom: Cuts extra deep to fully eliminate that thicker bottom border.
+      */}
+      <div style={{ 
+        width: '100%', 
+        maxWidth: '560px', 
+        padding: '0 2rem', 
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        clipPath: 'inset(9% 22% 14% 22%)' // Targeted vertical cropping parameters
+      }}>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          disablePictureInPicture
+          style={{ 
+            width: '100%', 
+            height: 'auto', 
+            objectFit: 'contain',
+            filter: 'contrast(1.4) brightness(0.78) grayscale(1)',
+            mixBlendMode: 'screen'
+          }}
+        >
+          <source src={require('./assets/logos/peacock_design.mp4')} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      {/* Elegant Parchment Bottom Loading Bar */}
       <motion.div
-        style={{ position: 'absolute', bottom: 0, left: 0, height: '2px', width: '100%', background: C.parchment, transformOrigin: 'left', boxShadow: `0 0 8px ${C.parchment}` }}
-        initial={{ scaleX: 0 }} animate={{ scaleX: 1 }}
-        transition={{ duration: 1.8, delay: 0, ease: 'linear' }}
+        style={{ 
+          position: 'absolute', 
+          bottom: 0, 
+          left: 0, 
+          height: '2px', 
+          width: '100%', 
+          background: C.parchment, 
+          transformOrigin: 'left', 
+          boxShadow: `0 0 8px ${C.parchment}` 
+        }}
+        initial={{ scaleX: 0 }} 
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 2.6, delay: 0, ease: 'linear' }}
       />
     </motion.div>
   )
