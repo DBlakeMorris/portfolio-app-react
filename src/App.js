@@ -149,6 +149,33 @@ const GlobalStyles = () => (
     .pub-editorial-card:hover { transform: translateY(-3px); background: rgba(21,46,21,0.2); }
     .pub-editorial-card:hover::after { opacity: 0.15; }
 
+    /* Interactive Architectural Stat Cards updates for About */
+    .stat-card-v2 {
+      background: rgba(242,234,216,0.01);
+      border: 1px solid ${C.border};
+      padding: 2rem 1.25rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .stat-card-v2::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(150,200,162,0.06) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .stat-card-v2:hover {
+      border-color: rgba(150,200,162,0.25);
+      transform: translateY(-3px);
+      box-shadow: 0 4px 25px rgba(0,0,0,0.25);
+    }
+    .stat-card-v2:hover::before {
+      opacity: 1;
+    }
+
     /* Testimonials */
     .testimonial { border-left: 2px solid ${C.parchmentDim}; padding: 1.75rem 2rem; margin-bottom: 1.5rem; background: rgba(21,46,21,0.2); transition: all 0.3s; }
     .testimonial:hover { border-left-color: ${C.eton}; background: rgba(21,46,21,0.4); }
@@ -162,12 +189,20 @@ const GlobalStyles = () => (
     .logo-track { display: flex; width: max-content; animation: scroll-left 40s linear infinite; }
     .logo-track:hover { animation-play-state: paused; }
 
-    /* Stats */
-    .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: ${C.eton}; line-height: 1; }
-    .stat-label { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.3em; color: ${C.parchmentDim}; text-transform: uppercase; margin-top: 0.3rem; }
+    /* Stats Core Grid Elements Formatting */
+    .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; font-weight: 300; color: ${C.eton}; line-height: 1; position: relative; z-index: 2; }
+    .stat-label { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.25em; color: ${C.parchmentDim}; text-transform: uppercase; margin-top: 0.5rem; position: relative; z-index: 2; line-height: 1.3; }
 
-    /* Grain */
-    .grain-overlay { position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.68; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"); }
+    /* Grain Overlay — high-contrast tactile mobile optimization */
+    .grain-overlay { 
+       position: fixed; 
+       inset: 0; 
+       pointer-events: none; 
+       z-index: 1; 
+       opacity: 0.88; 
+       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E"); 
+       background-size: 180px 180px;
+    }
     #tsparticles { position: fixed !important; }
 
     /* ── MOBILE ── */
@@ -183,10 +218,11 @@ const GlobalStyles = () => (
       .speaking-node-dot { left: 6px; }
       .pub-editorial-grid { grid-template-columns: 1fr; gap: 1rem; }
       .pub-editorial-card { min-height: auto; padding: 1.25rem; }
+      .stat-card-v2 { padding: 1.5rem 1rem; }
+      .stat-val { font-size: 2.5rem; }
       .testimonial { padding: 1.25rem 1.25rem; }
       .page-inner { padding: 1.5rem 1rem 3rem; }
-      .stat-val { font-size: 2.3rem; }
-      .about-stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 1.5rem !important; }
+      .about-stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 1rem !important; }
     }
   `}</style>
 )
@@ -238,6 +274,30 @@ const pageVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
   exit:    { opacity: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
+}
+
+// ── Animated Counter Component for Stats ───────────────────────────────────────
+const AnimatedCounter = ({ target, prefix = '', suffix = '', duration = 1500 }) => {
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    let startTimestamp = null
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1)
+      setCount(Math.floor(progress * target))
+      if (progress < 1) {
+        window.requestAnimationFrame(step)
+      }
+    }
+    window.requestAnimationFrame(step)
+  }, [target, duration])
+
+  return (
+    <span>
+      {prefix}{count}{suffix}
+    </span>
+  )
 }
 
 // ── Pages ──────────────────────────────────────────────────────────────────────
@@ -316,13 +376,15 @@ const AboutPage = () => (
 
         <div className="about-stats-grid" style={{ borderTop: `1px solid ${C.border}`, paddingTop: '2.5rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '2rem' }}>
           {[
-            { val: '$46M+', label: 'AI Engagements' },
-            { val: '10', label: 'Publications' },
-            { val: '6+', label: 'Speaking Events' },
-            { val: '6+', label: 'Years Experience' },
+            { target: 46, prefix: '$', suffix: 'M+', label: 'AI Engagements' },
+            { target: 10, prefix: '', suffix: '', label: 'Publications' },
+            { target: 6, prefix: '', suffix: '+', label: 'Speaking Events' },
+            { target: 6, prefix: '', suffix: '+', label: 'Years Experience' },
           ].map((s, i) => (
-            <div key={i}>
-              <div className="stat-val">{s.val}</div>
+            <div key={i} className="stat-card-v2">
+              <div className="stat-val">
+                <AnimatedCounter target={s.target} prefix={s.prefix} suffix={s.suffix} />
+              </div>
               <div className="stat-label">{s.label}</div>
             </div>
           ))}
