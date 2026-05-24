@@ -499,7 +499,7 @@ export default function Portfolio() {
         }}>
           <nav style={{
             maxWidth: 1100, margin: '0 auto', height: '100%',
-            display: 'flex', justifyContent: 'flex-start', alignItems: 'center',
+            display: 'flex', justifyContent: 'safe center', alignItems: 'center',
             padding: '0 1rem', overflowX: 'auto',
             WebkitOverflowScrolling: 'touch',
           }}>
