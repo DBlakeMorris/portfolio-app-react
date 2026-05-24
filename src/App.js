@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Particles from "react-particles"
 import { loadSlim } from "tsparticles-slim"
 import { Mail, Calendar, Linkedin, Github, ArrowUp } from 'lucide-react'
-import SimpleRotatingTitle from './components/SimpleRotatingTitle';
 
 import redditLogo from './assets/logos/Reddit-New-2023-Logo-Vector.svg-.png'
 import arangoLogo from './assets/logos/favicon.svg'
@@ -28,6 +27,7 @@ const C = {
   border:'rgba(242,234,216,0.08)',
 }
 
+// ── Splash ─────────────────────────────────────────────────────────────────────
 const SplashScreen = ({ onDone }) => {
   useEffect(() => {
     const t = setTimeout(onDone, 2200)
@@ -57,119 +57,354 @@ const SplashScreen = ({ onDone }) => {
   )
 }
 
+// ── Global Styles ──────────────────────────────────────────────────────────────
 const GlobalStyles = () => (
   <style>{`
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300;1,400&family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { scroll-padding-top: 72px; }
     html { scroll-behavior: smooth; }
-    body { background: ${C.racing}; color: ${C.cream}; font-family: 'EB Garamond', Georgia, serif; font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    body {
+      background: ${C.racing};
+      color: ${C.cream};
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
     ::selection { background: ${C.eton}; color: ${C.racing}; }
     ::-webkit-scrollbar { width: 3px; }
     ::-webkit-scrollbar-track { background: ${C.racing}; }
     ::-webkit-scrollbar-thumb { background: ${C.etonDim}; }
 
-    .nav-link { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.22em; color: ${C.creamDim}; background: none; border: none; cursor: pointer; padding: 6px 16px; transition: color 0.3s ease; text-transform: uppercase; }
+    /* ── Nav ── */
+    .nav-link {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: ${C.creamDim};
+      background: none; border: none; cursor: pointer;
+      padding: 6px 18px;
+      transition: color 0.3s ease;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
     .nav-link:hover { color: ${C.eton}; }
     .nav-link.active { color: ${C.eton}; border-bottom: 1px solid ${C.eton}; }
 
-    .section-title { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.38em; color: ${C.parchment}; text-transform: uppercase; margin-bottom: 3.5rem; display: flex; align-items: center; gap: 1.5rem; }
-    .section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, ${C.eton}, transparent); }
+    /* ── Section titles ── */
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      color: ${C.parchment};
+      text-transform: uppercase;
+      margin-bottom: 3.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1; height: 1px;
+      background: linear-gradient(to right, ${C.eton}, transparent);
+    }
 
-    .btn-primary, .btn-ghost { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; border: 1px solid ${C.cream}; color: ${C.cream}; background: transparent; padding: 14px 0; width: 220px; cursor: pointer; transition: all 0.35s ease; display: inline-flex; align-items: center; justify-content: center; gap: 8px; box-shadow: none; }
-    .btn-primary:hover, .btn-ghost:hover { background: ${C.eton}; color: ${C.racing}; border-color: ${C.eton}; }
+    /* ── Buttons ── */
+    .btn-primary, .btn-ghost {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 1px solid ${C.cream};
+      color: ${C.cream};
+      background: transparent;
+      padding: 14px 0;
+      width: 220px;
+      cursor: pointer;
+      transition: all 0.35s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: none;
+    }
+    .btn-primary:hover, .btn-ghost:hover {
+      background: ${C.eton};
+      color: ${C.racing};
+      border-color: ${C.eton};
+    }
 
-    .btn-sm { font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid ${C.border}; color: ${C.creamDim}; background: transparent; padding: 8px 18px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 6px; }
+    .btn-sm {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: 1px solid ${C.border};
+      color: ${C.creamDim};
+      background: transparent;
+      padding: 9px 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
     .btn-sm:hover { border-color: ${C.eton}; color: ${C.eton}; }
 
-    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1px; background: ${C.border}; }
-    .product-card { background: ${C.racing}; padding: 2.5rem; transition: background 0.3s ease; position: relative; overflow: hidden; }
-    .product-card::before { content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 0; background: ${C.eton}; transition: height 0.4s ease; }
+    /* ── Products ── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1px;
+      background: ${C.border};
+    }
+    .product-card {
+      background: ${C.racing};
+      padding: 2.5rem;
+      transition: background 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 2px; height: 0;
+      background: ${C.eton};
+      transition: height 0.4s ease;
+    }
     .product-card:hover { background: rgba(21,46,21,0.7); }
     .product-card:hover::before { height: 100%; }
-    .product-name { font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 500; color: ${C.cream}; margin-bottom: 0.3rem; letter-spacing: 0.06em; }
-    .product-tagline { font-style: italic; font-size: 0.85rem; color: ${C.creamFaint}; margin-bottom: 1.25rem; }
-    .product-desc { font-size: 0.88rem; color: ${C.creamDim}; line-height: 1.7; margin-bottom: 1.5rem; }
-    .use-case-label { font-family: 'Cinzel', serif; font-size: 0.48rem; letter-spacing: 0.3em; color: ${C.parchmentDim}; text-transform: uppercase; margin-bottom: 0.75rem; }
-    .use-case-item { font-size: 0.85rem; color: ${C.creamDim}; padding: 0.35rem 0; border-bottom: 1px solid rgba(242,234,216,0.04); display: flex; align-items: flex-start; gap: 0.75rem; }
+    .product-name {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: ${C.cream};
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.06em;
+    }
+    .product-tagline { font-style: italic; font-size: 0.95rem; color: ${C.creamFaint}; margin-bottom: 1.25rem; }
+    .product-desc { font-size: 0.95rem; color: ${C.creamDim}; line-height: 1.7; margin-bottom: 1.5rem; }
+    .use-case-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.28em;
+      color: ${C.parchmentDim};
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .use-case-item {
+      font-size: 0.92rem;
+      color: ${C.creamDim};
+      padding: 0.35rem 0;
+      border-bottom: 1px solid rgba(242,234,216,0.04);
+      display: flex; align-items: flex-start; gap: 0.75rem;
+    }
     .use-case-item::before { content: '—'; color: ${C.etonDim}; flex-shrink: 0; }
 
+    /* ── Speaking ── */
     .speaking-timeline { border-left: 1px solid ${C.border}; }
-    .speaking-row { display: flex; gap: 2.5rem; padding: 2rem 0 2rem 2.5rem; border-bottom: 1px solid ${C.border}; transition: background 0.2s; position: relative; }
-    .speaking-row::before { content: ''; position: absolute; left: -4px; top: 50%; transform: translateY(-50%); width: 7px; height: 7px; background: ${C.racing}; border: 1px solid ${C.parchmentDim}; border-radius: 50%; transition: all 0.3s; }
+    .speaking-row {
+      display: flex; gap: 2.5rem;
+      padding: 2rem 0 2rem 2.5rem;
+      border-bottom: 1px solid ${C.border};
+      transition: background 0.2s;
+      position: relative;
+    }
+    .speaking-row::before {
+      content: '';
+      position: absolute; left: -4px; top: 50%;
+      transform: translateY(-50%);
+      width: 7px; height: 7px;
+      background: ${C.racing};
+      border: 1px solid ${C.parchmentDim};
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
     .speaking-row:hover { background: rgba(242,234,216,0.02); }
     .speaking-row:hover::before { background: ${C.eton}; border-color: ${C.eton}; }
-    .speaking-year { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.15em; color: ${C.parchmentDim}; width: 3rem; flex-shrink: 0; padding-top: 0.25rem; }
-    .speaking-event { font-family: 'Cinzel', serif; font-size: 0.82rem; color: ${C.cream}; margin-bottom: 0.4rem; letter-spacing: 0.04em; }
-    .speaking-topic { font-style: italic; font-size: 0.9rem; color: ${C.creamDim}; margin-bottom: 0.35rem; }
-    .speaking-location { font-family: 'Cinzel', serif; font-size: 0.48rem; letter-spacing: 0.22em; color: ${C.eton}; text-transform: uppercase; }
+    .speaking-year {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: ${C.parchmentDim};
+      width: 3rem; flex-shrink: 0;
+      padding-top: 0.25rem;
+    }
+    .speaking-event {
+      font-family: 'Cinzel', serif;
+      font-size: 0.92rem;
+      color: ${C.cream};
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.04em;
+    }
+    .speaking-topic { font-style: italic; font-size: 0.98rem; color: ${C.creamDim}; margin-bottom: 0.35rem; }
+    .speaking-location {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      color: ${C.eton};
+      text-transform: uppercase;
+    }
 
-    .pub-row { display: flex; gap: 1.5rem; padding: 1.4rem 0; border-bottom: 1px solid ${C.border}; transition: background 0.2s; align-items: flex-start; }
+    /* ── Publications ── */
+    .pub-row {
+      display: flex; gap: 1.5rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid ${C.border};
+      transition: background 0.2s;
+      align-items: flex-start;
+    }
     .pub-row:hover { background: rgba(242,234,216,0.02); }
-    .pub-num { font-family: 'Cinzel', serif; font-size: 0.55rem; color: ${C.parchmentDim}; width: 2rem; flex-shrink: 0; padding-top: 0.2rem; letter-spacing: 0.1em; }
-    .pub-title { font-size: 0.95rem; color: ${C.cream}; line-height: 1.55; margin-bottom: 0.4rem; }
-    .pub-meta { font-family: 'Cinzel', serif; font-size: 0.48rem; letter-spacing: 0.22em; color: ${C.eton}; text-transform: uppercase; }
+    .pub-num {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      color: ${C.parchmentDim};
+      width: 2rem; flex-shrink: 0;
+      padding-top: 0.2rem;
+      letter-spacing: 0.1em;
+    }
+    .pub-title { font-size: 1rem; color: ${C.cream}; line-height: 1.55; margin-bottom: 0.4rem; }
+    .pub-meta {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      color: ${C.eton};
+      text-transform: uppercase;
+    }
 
-    .testimonial { border-left: 2px solid ${C.parchmentDim}; padding: 2rem 2.5rem; margin-bottom: 2rem; background: rgba(21,46,21,0.2); transition: all 0.3s; }
+    /* ── Testimonials ── */
+    .testimonial {
+      border-left: 2px solid ${C.parchmentDim};
+      padding: 2rem 2.5rem;
+      margin-bottom: 2rem;
+      background: rgba(21,46,21,0.2);
+      transition: all 0.3s;
+    }
     .testimonial:hover { border-left-color: ${C.eton}; background: rgba(21,46,21,0.4); }
-    .testimonial-quote { font-style: italic; font-size: 1.05rem; color: ${C.creamDim}; line-height: 1.85; margin-bottom: 1.5rem; }
-    .testimonial-name { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.18em; color: ${C.cream}; text-transform: uppercase; }
-    .testimonial-title { font-size: 0.85rem; font-style: italic; color: ${C.creamFaint}; margin-top: 0.25rem; }
+    .testimonial-quote { font-style: italic; font-size: 1.1rem; color: ${C.creamDim}; line-height: 1.85; margin-bottom: 1.5rem; }
+    .testimonial-name {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: ${C.cream};
+      text-transform: uppercase;
+    }
+    .testimonial-title { font-size: 0.92rem; font-style: italic; color: ${C.creamFaint}; margin-top: 0.25rem; }
 
-    .logo-reel-wrap { overflow: hidden; border-top: 1px solid ${C.border}; padding: 16px 0; background: rgba(8,24,8,0.97); }
+    /* ── Logo reel ── */
+    .logo-reel-wrap {
+      overflow: hidden;
+      border-top: 1px solid ${C.border};
+      padding: 16px 0;
+      background: rgba(8,24,8,0.97);
+    }
     @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     .logo-track { display: flex; width: max-content; animation: scroll-left 40s linear infinite; }
     .logo-track:hover { animation-play-state: paused; }
 
-    .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: ${C.eton}; line-height: 1; }
-    .stat-label { font-family: 'Cinzel', serif; font-size: 0.48rem; letter-spacing: 0.3em; color: ${C.parchmentDim}; text-transform: uppercase; margin-top: 0.3rem; }
+    /* ── Stats ── */
+    .stat-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: ${C.eton};
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      color: ${C.parchmentDim};
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
 
-    .back-top { position: fixed; bottom: 2rem; right: 2rem; width: 36px; height: 36px; border: 1px solid ${C.border}; background: ${C.racing}; color: ${C.creamDim}; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; z-index: 100; }
+    /* ── Back to top ── */
+    .back-top {
+      position: fixed; bottom: 2rem; right: 2rem;
+      width: 36px; height: 36px;
+      border: 1px solid ${C.border};
+      background: ${C.racing}; color: ${C.creamDim};
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s; z-index: 100;
+    }
     .back-top:hover { background: ${C.eton}; color: ${C.racing}; border-color: ${C.eton}; }
 
-    .grain-overlay { position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.28; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"); }
+    /* ── Grain ── */
+    .grain-overlay {
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 1; opacity: 0.28;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    }
     #tsparticles { position: fixed !important; }
 
-    /* ── MOBILE ─────────────────────────────────────────────────────────────── */
+    /* ── TABLET (max 900px) ── */
+    @media (max-width: 900px) {
+      .product-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── MOBILE (max 768px) ── */
     @media (max-width: 768px) {
-      /* Nav — scrollable strip, smaller text */
-      .nav-link { font-size: 0.46rem; letter-spacing: 0.12em; padding: 4px 8px; }
+      body { font-size: 16px; }
+
+      /* Nav — stays in one row, slightly smaller but readable */
+      .nav-link { font-size: 0.58rem; letter-spacing: 0.1em; padding: 5px 10px; }
 
       /* Section titles */
-      .section-title { font-size: 0.5rem; letter-spacing: 0.25em; margin-bottom: 2rem; }
+      .section-title { font-size: 0.6rem; letter-spacing: 0.22em; margin-bottom: 2rem; }
 
-      /* Buttons — full width on mobile */
-      .btn-primary, .btn-ghost { width: 100%; max-width: 320px; padding: 13px 0; font-size: 0.52rem; }
+      /* Buttons — side by side, smaller width */
+      .btn-primary, .btn-ghost { width: 155px; padding: 12px 0; font-size: 0.55rem; letter-spacing: 0.14em; }
 
-      /* Products — single column */
+      /* Products */
       .product-grid { grid-template-columns: 1fr; }
       .product-card { padding: 1.75rem; }
+      .product-name { font-size: 0.95rem; }
+      .product-tagline { font-size: 0.88rem; }
+      .product-desc { font-size: 0.88rem; }
+      .use-case-item { font-size: 0.85rem; }
 
-      /* Speaking — tighter */
+      /* Speaking */
       .speaking-row { gap: 1rem; padding: 1.5rem 0 1.5rem 1.5rem; }
-      .speaking-year { width: 2.5rem; }
-      .speaking-event { font-size: 0.75rem; }
-      .speaking-topic { font-size: 0.85rem; }
+      .speaking-year { font-size: 0.58rem; width: 2.5rem; }
+      .speaking-event { font-size: 0.82rem; }
+      .speaking-topic { font-size: 0.88rem; }
+      .speaking-location { font-size: 0.52rem; }
 
       /* Publications */
-      .pub-title { font-size: 0.88rem; }
+      .pub-title { font-size: 0.92rem; }
+      .pub-meta { font-size: 0.52rem; }
+      .pub-num { font-size: 0.58rem; }
 
       /* Testimonials */
       .testimonial { padding: 1.5rem 1.25rem; }
-      .testimonial-quote { font-size: 0.95rem; }
+      .testimonial-quote { font-size: 0.98rem; }
+      .testimonial-name { font-size: 0.62rem; }
 
       /* Stats */
-      .stat-val { font-size: 2.2rem; }
+      .stat-val { font-size: 2.4rem; }
+      .stat-label { font-size: 0.52rem; }
+
+      /* Btn sm */
+      .btn-sm { font-size: 0.55rem; padding: 8px 14px; }
     }
 
+    /* ── SMALL MOBILE (max 480px) ── */
     @media (max-width: 480px) {
-      .nav-link { font-size: 0.4rem; letter-spacing: 0.08em; padding: 4px 6px; }
+      .nav-link { font-size: 0.5rem; letter-spacing: 0.08em; padding: 4px 7px; }
+      .btn-primary, .btn-ghost { width: 140px; font-size: 0.5rem; padding: 11px 0; }
       .product-card { padding: 1.25rem; }
       .testimonial { padding: 1.25rem 1rem; }
+      .speaking-row { padding: 1.25rem 0 1.25rem 1.25rem; }
     }
   `}</style>
 )
 
+// ── Particles ──────────────────────────────────────────────────────────────────
 const ParticleBackground = () => {
   const particlesInit = useCallback(async (engine) => { await loadSlim(engine) }, [])
   return (
@@ -177,7 +412,15 @@ const ParticleBackground = () => {
       options={{
         background: { color: { value: C.racing } }, fpsLimit: 60,
         interactivity: { events: { onHover: { enable: true, mode: "repulse" }, resize: true }, modes: { repulse: { distance: 100, duration: 0.4 } } },
-        particles: { color: { value: C.eton }, links: { color: C.etonDim, distance: 140, enable: true, opacity: 0.15, width: 0.6 }, move: { enable: true, speed: 0.4, outModes: { default: "bounce" } }, number: { density: { enable: true, area: 1000 }, value: 55 }, opacity: { value: 0.2 }, shape: { type: "circle" }, size: { value: { min: 1, max: 1.8 } } },
+        particles: {
+          color: { value: C.eton },
+          links: { color: C.etonDim, distance: 140, enable: true, opacity: 0.15, width: 0.6 },
+          move: { enable: true, speed: 0.4, outModes: { default: "bounce" } },
+          number: { density: { enable: true, area: 1000 }, value: 55 },
+          opacity: { value: 0.2 },
+          shape: { type: "circle" },
+          size: { value: { min: 1, max: 1.8 } },
+        },
         detectRetina: true,
       }}
       style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}
@@ -185,6 +428,7 @@ const ParticleBackground = () => {
   )
 }
 
+// ── Logo Reel ──────────────────────────────────────────────────────────────────
 const logos = [
   { src: redditLogo, alt: 'Reddit' },
   { src: arangoLogo, alt: 'Arango' },
@@ -216,6 +460,7 @@ const LogoReel = () => {
   )
 }
 
+// ── Data ───────────────────────────────────────────────────────────────────────
 const products = [
   { name: 'Contextus', tagline: 'Graph-Guided Agentic Discovery', description: "Contextus goes beyond RAG. It trains a GNN over a domain knowledge graph to surface latent connections that don't exist explicitly in any document — inferring unknown relationships from the structure of the graph itself. A LangGraph ReAct agent then reasons over multi-hop traversal results, delivering explainable, relationship-aware answers. Domain-agnostic by design: swap the knowledge graph, keep the architecture.", useCases: ['Intelligence & Defence — non-obvious entity connections across datasets', 'Life Sciences — drug-target repurposing via latent relationship discovery', 'Enterprise Knowledge — inferring relationships between documents, topics, and risk domains'] },
   { name: 'Sentinel', tagline: 'A Temporal and Living Impact Analysis', description: "Live network telemetry streams continuously into Arango — the graph is alive, mutating in real time. Sentinel monitors emerging structural patterns, calculates blast radius instantly on failure events, and reasons counterfactually. Monte Carlo simulations rank the most likely future failure paths before they happen. Engineers get a natural language incident report, not a raw query result.", useCases: ['Telecoms — live topology monitoring and reactive impact analysis across Network Digital Twins', 'Supply chain — detecting cascading disruption across multi-tier supplier networks', 'Critical infrastructure — power grids, water networks, transport systems'] },
@@ -253,13 +498,21 @@ const testimonials = [
   { quote: "The RAG system Daniel built was a pivotal proof-of-concept. It successfully demonstrated how a context-aware, document-grounded AI assistant should work in practice — both in terms of architecture and user interaction. This helped steer us toward the containerised, scalable design we eventually adopted. The tool — now evolved — is currently available via the Azure Marketplace as a 1-touch deployment solution.", name: 'ISx4 Leadership', title: 'Director, ISx4', linkedin: null },
 ]
 
+// ── Back to Top ────────────────────────────────────────────────────────────────
 const BackToTopButton = () => {
   const [visible, setVisible] = useState(false)
-  useEffect(() => { const t = () => setVisible(window.pageYOffset > 400); window.addEventListener('scroll', t); return () => window.removeEventListener('scroll', t) }, [])
+  useEffect(() => {
+    const t = () => setVisible(window.pageYOffset > 400)
+    window.addEventListener('scroll', t)
+    return () => window.removeEventListener('scroll', t)
+  }, [])
   return (
     <AnimatePresence>
       {visible && (
-        <motion.button className="back-top" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Back to top">
+        <motion.button className="back-top"
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          aria-label="Back to top">
           <ArrowUp size={12} />
         </motion.button>
       )}
@@ -267,19 +520,32 @@ const BackToTopButton = () => {
   )
 }
 
+// ── Main ───────────────────────────────────────────────────────────────────────
 export default function Portfolio() {
   const [showSplash, setShowSplash] = useState(true)
   const [activeSection, setActiveSection] = useState('home')
   const [isScrolled, setIsScrolled] = useState(false)
 
-  useEffect(() => { const onScroll = () => setIsScrolled(window.scrollY > 40); window.addEventListener('scroll', onScroll); return () => window.removeEventListener('scroll', onScroll) }, [])
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) setActiveSection(e.target.id) }), { rootMargin: '-20% 0px -60% 0px', threshold: 0 })
+    const onScroll = () => setIsScrolled(window.scrollY > 40)
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) setActiveSection(e.target.id) }),
+      { rootMargin: '-20% 0px -60% 0px', threshold: 0 }
+    )
     document.querySelectorAll('section[id]').forEach((s) => observer.observe(s))
     return () => observer.disconnect()
   }, [])
 
-  const scrollTo = (id) => { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }); setActiveSection(id) }
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    setActiveSection(id)
+  }
+
   const navItems = ['home', 'about', 'products', 'speaking', 'publications', 'testimonials']
 
   return (
@@ -291,14 +557,30 @@ export default function Portfolio() {
 
       <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
 
-        {/* HEADER */}
-        <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, background: isScrolled ? 'rgba(8,24,8,0.97)' : 'transparent', borderBottom: isScrolled ? `1px solid ${C.border}` : 'none', backdropFilter: isScrolled ? 'blur(20px)' : 'none', transition: 'all 0.4s ease' }}>
-          <nav style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', justifyContent: 'center', alignItems: 'center', height: 56, padding: '0 1rem', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
-            {navItems.map((s) => <button key={s} className={`nav-link ${activeSection === s ? 'active' : ''}`} onClick={() => scrollTo(s)}>{s}</button>)}
+        {/* ── HEADER ── */}
+        <header style={{
+          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
+          background: isScrolled ? 'rgba(8,24,8,0.97)' : 'transparent',
+          borderBottom: isScrolled ? `1px solid ${C.border}` : 'none',
+          backdropFilter: isScrolled ? 'blur(20px)' : 'none',
+          transition: 'all 0.4s ease',
+        }}>
+          <nav style={{
+            maxWidth: 1100, margin: '0 auto',
+            display: 'flex', justifyContent: 'center', alignItems: 'center',
+            height: 60, padding: '0 1rem',
+            overflowX: 'auto', WebkitOverflowScrolling: 'touch',
+            msOverflowStyle: 'none', scrollbarWidth: 'none',
+          }}>
+            {navItems.map((s) => (
+              <button key={s} className={`nav-link ${activeSection === s ? 'active' : ''}`} onClick={() => scrollTo(s)}>
+                {s}
+              </button>
+            ))}
           </nav>
         </header>
 
-        {/* HOME */}
+        {/* ── HOME ── */}
         <section id="home" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -306,43 +588,78 @@ export default function Portfolio() {
             transition={{ duration: 1.3, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '80px 1.5rem 3rem' }}
           >
-            <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: showSplash ? 0 : 1 }} transition={{ duration: 1.2, delay: 0.5 }} style={{ width: 48, height: 1, background: C.parchment, marginBottom: '2.2rem', transformOrigin: 'center' }} />
-            <h1 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 'clamp(3rem, 8vw, 7rem)', fontWeight: 300, letterSpacing: '0.08em', color: C.cream, lineHeight: 1.05, marginBottom: '1rem' }}>D.B. Morris</h1>
-            <div style={{ fontFamily: "'Cinzel', serif", fontSize: 'clamp(0.45rem, 1.5vw, 0.6rem)', letterSpacing: '0.35em', color: C.creamDim, textTransform: 'uppercase', marginBottom: '1.25rem' }}><SimpleRotatingTitle /></div>
-            <p style={{ fontStyle: 'italic', color: C.creamFaint, maxWidth: 460, marginBottom: '3rem', fontSize: 'clamp(0.9rem, 2.5vw, 1rem)', lineHeight: 1.8, padding: '0 1rem' }}>Architecting intelligence at the edge of what graphs can know.</p>
+            <motion.div
+              initial={{ scaleX: 0 }} animate={{ scaleX: showSplash ? 0 : 1 }}
+              transition={{ duration: 1.2, delay: 0.5 }}
+              style={{ width: 48, height: 1, background: C.parchment, marginBottom: '2.2rem', transformOrigin: 'center' }}
+            />
+            <h1 style={{
+              fontFamily: "'Cormorant Garamond', Georgia, serif",
+              fontSize: 'clamp(2.8rem, 8vw, 7rem)',
+              fontWeight: 300, letterSpacing: '0.08em',
+              color: C.cream, lineHeight: 1.05, marginBottom: '2rem',
+            }}>
+              D.B. Morris
+            </h1>
+            <p style={{
+              fontStyle: 'italic', color: C.creamFaint,
+              maxWidth: 460, marginBottom: '3rem',
+              fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)',
+              lineHeight: 1.8, padding: '0 0.5rem',
+            }}>
+              Architecting intelligence at the edge of what graphs can know.
+            </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', width: '100%', padding: '0 1rem' }}>
-              <button className="btn-primary" onClick={() => window.location.href = 'mailto:danielblakemorris@gmail.com'}><Mail size={12} /> Get in Touch</button>
-              <button className="btn-ghost" onClick={() => window.open('https://calendly.com/danielblakemorris/30min', '_blank')}><Calendar size={12} /> Book a Consultation</button>
+              <button className="btn-primary" onClick={() => window.location.href = 'mailto:danielblakemorris@gmail.com'}>
+                <Mail size={13} /> Get in Touch
+              </button>
+              <button className="btn-ghost" onClick={() => window.open('https://calendly.com/danielblakemorris/30min', '_blank')}>
+                <Calendar size={13} /> Book a Consultation
+              </button>
             </div>
           </motion.div>
           <LogoReel />
         </section>
 
-        {/* ABOUT */}
-        <section id="about" style={{ padding: '5rem 1.5rem' }}>
+        {/* ── ABOUT ── */}
+        <section id="about" style={{ padding: '6rem 1.5rem' }}>
           <div style={{ maxWidth: 960, margin: '0 auto' }}>
             <div className="section-title">About</div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '3rem', alignItems: 'start' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '3.5rem', alignItems: 'start' }}>
               <div>
-                <p style={{ fontSize: '1.1rem', lineHeight: 1.85, color: C.cream, marginBottom: '1.5rem' }}>AI Engineering Leader and Solutions Architect with 6+ years delivering enterprise-scale AI systems across Fortune 500 companies and UK government entities including 10 Downing Street.</p>
-                <p style={{ fontSize: '1rem', lineHeight: 1.8, color: C.creamDim, marginBottom: '1.5rem' }}>Currently Lead Solutions Engineer — Applied AI, EMEA at Arango, founding and leading the Innovation Lab — building Contextus, Sentinel and Arbiter, a suite of graph-guided agentic AI platforms. Previously at Reddit, architecting LLM infrastructure serving millions of users.</p>
-                <p style={{ fontSize: '0.95rem', lineHeight: 1.8, color: C.creamDim, marginBottom: '2rem' }}>$46M+ in successful AI engagements. Published across IEEE, IGI Global and ArangoDB. Featured speaker at AIAI, NASIC, IEEE Big Data and Swiss Biotech Day 2026.</p>
+                <p style={{ fontSize: '1.15rem', lineHeight: 1.85, color: C.cream, marginBottom: '1.5rem' }}>
+                  AI Engineering Leader and Solutions Architect with 6+ years delivering enterprise-scale AI systems across Fortune 500 companies and UK government entities including 10 Downing Street.
+                </p>
+                <p style={{ fontSize: '1.05rem', lineHeight: 1.8, color: C.creamDim, marginBottom: '1.5rem' }}>
+                  Currently Lead Solutions Engineer — Applied AI, EMEA at Arango, founding and leading the Innovation Lab — building Contextus, Sentinel and Arbiter, a suite of graph-guided agentic AI platforms. Previously at Reddit, architecting LLM infrastructure serving millions of users.
+                </p>
+                <p style={{ fontSize: '1rem', lineHeight: 1.8, color: C.creamDim, marginBottom: '2rem' }}>
+                  $46M+ in successful AI engagements. Published across IEEE, IGI Global and ArangoDB. Featured speaker at AIAI, NASIC, IEEE Big Data and Swiss Biotech Day 2026.
+                </p>
                 <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                  <button className="btn-sm" onClick={() => window.open('https://www.linkedin.com/in/daniel-blake-morris', '_blank')}><Linkedin size={11} /> LinkedIn</button>
-                  <button className="btn-sm" onClick={() => window.open('https://github.com/DBlakeMorris', '_blank')}><Github size={11} /> GitHub</button>
+                  <button className="btn-sm" onClick={() => window.open('https://www.linkedin.com/in/daniel-blake-morris', '_blank')}><Linkedin size={12} /> LinkedIn</button>
+                  <button className="btn-sm" onClick={() => window.open('https://github.com/DBlakeMorris', '_blank')}><Github size={12} /> GitHub</button>
                 </div>
               </div>
-              <div style={{ borderLeft: `1px solid ${C.border}`, paddingLeft: '2rem' }}>
-                {[{ val: '$46M+', label: 'AI Engagements' }, { val: '10', label: 'Publications' }, { val: '6+', label: 'Speaking Events' }, { val: '6+', label: 'Years Experience' }].map((s, i) => (
-                  <div key={i} style={{ marginBottom: '2.25rem' }}><div className="stat-val">{s.val}</div><div className="stat-label">{s.label}</div></div>
+              <div style={{ borderLeft: `1px solid ${C.border}`, paddingLeft: '2.5rem' }}>
+                {[
+                  { val: '$46M+', label: 'AI Engagements' },
+                  { val: '10', label: 'Publications' },
+                  { val: '6+', label: 'Speaking Events' },
+                  { val: '6+', label: 'Years Experience' },
+                ].map((s, i) => (
+                  <div key={i} style={{ marginBottom: '2.25rem' }}>
+                    <div className="stat-val">{s.val}</div>
+                    <div className="stat-label">{s.label}</div>
+                  </div>
                 ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* PRODUCTS */}
-        <section id="products" style={{ padding: '5rem 1.5rem' }}>
+        {/* ── PRODUCTS ── */}
+        <section id="products" style={{ padding: '6rem 1.5rem' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <div className="section-title">Products</div>
             <div className="product-grid">
@@ -359,59 +676,76 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* SPEAKING */}
-        <section id="speaking" style={{ padding: '5rem 1.5rem' }}>
+        {/* ── SPEAKING ── */}
+        <section id="speaking" style={{ padding: '6rem 1.5rem' }}>
           <div style={{ maxWidth: 860, margin: '0 auto' }}>
             <div className="section-title">Speaking</div>
             <div className="speaking-timeline">
               {speakingEvents.map((e, i) => (
                 <div key={i} className="speaking-row">
                   <div className="speaking-year">{e.event.match(/\d{4}/)?.[0] || '—'}</div>
-                  <div><div className="speaking-event">{e.event.replace(/\d{4}/, '').trim()}</div><div className="speaking-topic">{e.topic}</div><div className="speaking-location">{e.location}</div></div>
+                  <div>
+                    <div className="speaking-event">{e.event.replace(/\d{4}/, '').trim()}</div>
+                    <div className="speaking-topic">{e.topic}</div>
+                    <div className="speaking-location">{e.location}</div>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* PUBLICATIONS */}
-        <section id="publications" style={{ padding: '5rem 1.5rem' }}>
+        {/* ── PUBLICATIONS ── */}
+        <section id="publications" style={{ padding: '6rem 1.5rem' }}>
           <div style={{ maxWidth: 860, margin: '0 auto' }}>
             <div className="section-title">Publications</div>
             {publications.map((pub, i) => (
               <div key={i} className="pub-row">
                 <span className="pub-num">{String(i + 1).padStart(2, '0')}</span>
-                <div><div className="pub-title">{pub.title}</div><div className="pub-meta">{pub.publisher} &nbsp;·&nbsp; {pub.date}</div></div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* TESTIMONIALS */}
-        <section id="testimonials" style={{ padding: '5rem 1.5rem' }}>
-          <div style={{ maxWidth: 860, margin: '0 auto' }}>
-            <div className="section-title">Testimonials</div>
-            {testimonials.map((t, i) => (
-              <div key={i} className="testimonial">
-                <div className="testimonial-quote">"{t.quote}"</div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
-                  <div><div className="testimonial-name">{t.name}</div><div className="testimonial-title">{t.title}</div></div>
-                  {t.linkedin && <button className="btn-sm" onClick={() => window.open(t.linkedin, '_blank')}><Linkedin size={11} /> Profile</button>}
+                <div>
+                  <div className="pub-title">{pub.title}</div>
+                  <div className="pub-meta">{pub.publisher} &nbsp;·&nbsp; {pub.date}</div>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* FOOTER */}
+        {/* ── TESTIMONIALS ── */}
+        <section id="testimonials" style={{ padding: '6rem 1.5rem' }}>
+          <div style={{ maxWidth: 860, margin: '0 auto' }}>
+            <div className="section-title">Testimonials</div>
+            {testimonials.map((t, i) => (
+              <div key={i} className="testimonial">
+                <div className="testimonial-quote">"{t.quote}"</div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+                  <div>
+                    <div className="testimonial-name">{t.name}</div>
+                    <div className="testimonial-title">{t.title}</div>
+                  </div>
+                  {t.linkedin && (
+                    <button className="btn-sm" onClick={() => window.open(t.linkedin, '_blank')}>
+                      <Linkedin size={12} /> Profile
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── FOOTER ── */}
         <footer style={{ borderTop: `1px solid ${C.border}`, padding: '2.5rem 1.5rem', textAlign: 'center' }}>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
-            <button className="btn-sm" onClick={() => window.location.href = 'mailto:danielblakemorris@gmail.com'}><Mail size={11} /></button>
-            <button className="btn-sm" onClick={() => window.open('https://www.linkedin.com/in/daniel-blake-morris', '_blank')}><Linkedin size={11} /></button>
-            <button className="btn-sm" onClick={() => window.open('https://github.com/DBlakeMorris', '_blank')}><Github size={11} /></button>
+            <button className="btn-sm" onClick={() => window.location.href = 'mailto:danielblakemorris@gmail.com'}><Mail size={12} /></button>
+            <button className="btn-sm" onClick={() => window.open('https://www.linkedin.com/in/daniel-blake-morris', '_blank')}><Linkedin size={12} /></button>
+            <button className="btn-sm" onClick={() => window.open('https://github.com/DBlakeMorris', '_blank')}><Github size={12} /></button>
           </div>
-          <div style={{ fontFamily: "'Cinzel', serif", fontSize: '0.48rem', letterSpacing: '0.32em', color: C.parchmentDim, textTransform: 'uppercase' }}>© MMXXVI &nbsp;·&nbsp; D.B. Morris</div>
+          <div style={{ fontFamily: "'Cinzel', serif", fontSize: '0.55rem', letterSpacing: '0.32em', color: C.parchmentDim, textTransform: 'uppercase' }}>
+            © MMXXVI &nbsp;·&nbsp; D.B. Morris
+          </div>
         </footer>
+
       </div>
       <BackToTopButton />
     </>
