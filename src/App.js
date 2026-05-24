@@ -105,7 +105,6 @@ const GlobalStyles = () => (
       flex-direction: column;
     }
     
-    /* Dedicated variation to guarantee absolute zero scroll on Home Screen */
     .page.no-scroll {
       overflow: hidden;
     }
@@ -134,23 +133,21 @@ const GlobalStyles = () => (
     .use-case-item { font-size: 0.9rem; color: ${C.creamDim}; padding: 0.3rem 0; border-bottom: 1px solid rgba(242,234,216,0.04); display: flex; align-items: flex-start; gap: 0.75rem; }
     .use-case-item::before { content: '—'; color: ${C.etonDim}; flex-shrink: 0; }
 
-    /* Speaking */
-    .speaking-timeline { border-left: 1px solid ${C.border}; }
-    .speaking-row { display: flex; gap: 2rem; padding: 1.75rem 0 1.75rem 2rem; border-bottom: 1px solid ${C.border}; transition: background 0.2s; position: relative; }
-    .speaking-row::before { content: ''; position: absolute; left: -4px; top: 50%; transform: translateY(-50%); width: 7px; height: 7px; background: ${C.racing}; border: 1px solid ${C.parchmentDim}; border-radius: 50%; transition: all 0.3s; }
-    .speaking-row:hover { background: rgba(242,234,216,0.02); }
-    .speaking-row:hover::before { background: ${C.eton}; border-color: ${C.eton}; }
-    .speaking-year { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.15em; color: ${C.parchmentDim}; width: 3rem; flex-shrink: 0; padding-top: 0.2rem; }
-    .speaking-event { font-family: 'Cinzel', serif; font-size: 0.9rem; color: ${C.cream}; margin-bottom: 0.35rem; letter-spacing: 0.04em; }
-    .speaking-topic { font-style: italic; font-size: 0.95rem; color: ${C.creamDim}; margin-bottom: 0.3rem; }
-    .speaking-location { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.22em; color: ${C.eton}; text-transform: uppercase; }
+    /* Visual Dynamic Timeline updates for Speaking */
+    .speaking-timeline-v2 { position: relative; padding: 1rem 0; }
+    .speaking-timeline-v2::before { content: ''; position: absolute; left: 16px; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, ${C.border} 10%, ${C.border} 90%, transparent); }
+    .speaking-node { position: relative; padding-left: 45px; margin-bottom: 2.5rem; transition: all 0.3s ease; }
+    .speaking-node-dot { position: absolute; left: 12px; top: 8px; width: 9px; height: 9px; background: ${C.racing}; border: 2px solid ${C.parchmentDim}; border-radius: 50%; z-index: 5; transition: all 0.35s ease; }
+    .speaking-node:hover .speaking-node-dot { background: ${C.eton}; border-color: ${C.eton}; transform: scale(1.3); box-shadow: 0 0 10px rgba(150,200,162,0.4); }
+    .speaking-content-box { background: rgba(242,234,216,0.01); border: 1px solid ${C.border}; padding: 1.5rem; transition: all 0.3s ease; }
+    .speaking-node:hover .speaking-content-box { background: rgba(21,46,21,0.2); border-color: rgba(150,200,162,0.2); }
 
-    /* Publications */
-    .pub-row { display: flex; gap: 1.5rem; padding: 1.25rem 0; border-bottom: 1px solid ${C.border}; transition: background 0.2s; align-items: flex-start; }
-    .pub-row:hover { background: rgba(242,234,216,0.02); }
-    .pub-num { font-family: 'Cinzel', serif; font-size: 0.65rem; color: ${C.parchmentDim}; width: 2rem; flex-shrink: 0; padding-top: 0.2rem; letter-spacing: 0.1em; }
-    .pub-title { font-size: 1rem; color: ${C.cream}; line-height: 1.55; margin-bottom: 0.35rem; }
-    .pub-meta { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.22em; color: ${C.eton}; text-transform: uppercase; }
+    /* Magazine Editorial Grid updates for Publications */
+    .pub-editorial-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+    .pub-editorial-card { border: 1px solid ${C.border}; padding: 1.75rem; background: rgba(8,24,8,0.5); display: flex; flex-direction: column; justify-content: space-between; min-height: 220px; transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1); position: relative; }
+    .pub-editorial-card::after { content: ''; position: absolute; inset: 0; border: 1px solid ${C.eton}; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
+    .pub-editorial-card:hover { transform: translateY(-3px); background: rgba(21,46,21,0.2); }
+    .pub-editorial-card:hover::after { opacity: 0.15; }
 
     /* Testimonials */
     .testimonial { border-left: 2px solid ${C.parchmentDim}; padding: 1.75rem 2rem; margin-bottom: 1.5rem; background: rgba(21,46,21,0.2); transition: all 0.3s; }
@@ -181,8 +178,11 @@ const GlobalStyles = () => (
       .btn-primary, .btn-ghost { padding: 12px 20px; font-size: 0.6rem; letter-spacing: 0.12em; width: 100%; max-width: 290px; }
       .product-grid { grid-template-columns: 1fr; }
       .product-card { padding: 1.5rem; }
-      .speaking-row { gap: 0.5rem; padding: 1.25rem 0 1.25rem 1.25rem; flex-direction: column; }
-      .speaking-year { width: auto; padding-top: 0; }
+      .speaking-node { padding-left: 30px; margin-bottom: 1.75rem; }
+      .speaking-timeline-v2::before { left: 10px; }
+      .speaking-node-dot { left: 6px; }
+      .pub-editorial-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .pub-editorial-card { min-height: auto; padding: 1.25rem; }
       .testimonial { padding: 1.25rem 1.25rem; }
       .page-inner { padding: 1.5rem 1rem 3rem; }
       .stat-val { font-size: 2.3rem; }
@@ -377,14 +377,25 @@ const SpeakingPage = () => (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ width: '100%' }}>
       <div className="page-inner">
         <div className="section-title">Speaking</div>
-        <div className="speaking-timeline">
+        <div className="speaking-timeline-v2">
           {speakingEvents.map((e, i) => (
-            <div key={i} className="speaking-row">
-              <div className="speaking-year">{e.event.match(/\d{4}/)?.[0] || '—'}</div>
-              <div>
-                <div className="speaking-event">{e.event.replace(/\d{4}/, '').trim()}</div>
-                <div className="speaking-topic">{e.topic}</div>
-                <div className="speaking-location">{e.location}</div>
+            <div key={i} className="speaking-node">
+              <div className="speaking-node-dot" />
+              <div className="speaking-content-box">
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                  <span style={{ fontFamily: "'Cinzel', serif", fontSize: '0.85rem', color: C.cream, letterSpacing: '0.04em', fontWeight: 500 }}>
+                    {e.event.replace(/\d{4}/, '').trim()}
+                  </span>
+                  <span style={{ fontFamily: "'Cinzel', serif", fontSize: '0.68rem', color: C.parchmentDim, letterSpacing: '0.1em' }}>
+                    {e.event.match(/\d{4}/)?.[0] || '—'}
+                  </span>
+                </div>
+                <div style={{ fontStyle: 'italic', fontSize: '1rem', color: C.creamDim, marginBottom: '0.6rem', lineHeight: 1.5 }}>
+                  "{e.topic}"
+                </div>
+                <div style={{ fontFamily: "'Cinzel', serif", fontSize: '0.58rem', letterSpacing: '0.2em', color: C.eton, textTransform: 'uppercase' }}>
+                  {e.location}
+                </div>
               </div>
             </div>
           ))}
@@ -412,15 +423,28 @@ const PublicationsPage = () => (
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ width: '100%' }}>
       <div className="page-inner">
         <div className="section-title">Publications</div>
-        {publications.map((pub, i) => (
-          <div key={i} className="pub-row">
-            <span className="pub-num">{String(i + 1).padStart(2, '0')}</span>
-            <div>
-              <div className="pub-title">{pub.title}</div>
-              <div className="pub-meta">{pub.publisher} &nbsp;·&nbsp; {pub.date}</div>
+        <div className="pub-editorial-grid">
+          {publications.map((pub, i) => (
+            <div key={i} className="pub-editorial-card">
+              <div>
+                <div style={{ fontFamily: "'Cinzel', serif", fontSize: '0.6rem', color: C.parchmentDim, marginBottom: '0.75rem', letterSpacing: '0.15em' }}>
+                  REF // {String(i + 1).padStart(2, '0')}
+                </div>
+                <div style={{ fontSize: '1.05rem', color: C.cream, lineHeight: 1.5, fontWeight: 400, marginBottom: '1.5rem' }}>
+                  {pub.title}
+                </div>
+              </div>
+              <div style={{ borderTop: `1px solid rgba(242,234,216,0.04)`, paddingTop: '0.75rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontFamily: "'Cinzel', serif", fontSize: '0.58rem', letterSpacing: '0.18em', color: C.eton, textTransform: 'uppercase' }}>
+                  {pub.publisher}
+                </span>
+                <span style={{ fontSize: '0.8rem', color: C.creamFaint, fontStyle: 'italic' }}>
+                  {pub.date.split(' ')[1] || pub.date}
+                </span>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </motion.div>
   </div>
