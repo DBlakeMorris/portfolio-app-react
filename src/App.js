@@ -63,38 +63,39 @@ const SplashScreen = ({ onDone }) => {
     >
       {/* THE ASYMMETRICAL CROP LAYER:
         1. 9% Top: Slices perfectly through the thin top grey bar while keeping the head safe.
-        2. 22% Right / 22% Left: Left completely untouched since they are already perfect.
+        2. 22% Right: Keeps right border perfectly covered.
         3. 14% Bottom: Cuts extra deep to fully eliminate that thicker bottom border.
+        4. 25% Left: UPDATED from 22% to step inward and swallow the pulled-out left bar.
       */}
-      {!isMobile && (
-        <div style={{ 
-          width: '100%', 
-          maxWidth: '560px', 
-          padding: '0 2rem', 
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          clipPath: 'inset(9% 22% 14% 22%)' // Targeted vertical cropping parameters
-        }}>
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            disablePictureInPicture
-            style={{ 
-              width: '100%', 
-              height: 'auto', 
-              objectFit: 'contain',
-              filter: 'contrast(1.4) brightness(0.78) grayscale(1)',
-              mixBlendMode: 'screen'
-            }}
-          >
-            <source src={require('./assets/logos/peacock_design.mp4')} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      )}
+      <div style={{ 
+        display: isMobile ? 'none' : 'flex', 
+        width: '100%', 
+        maxWidth: '560px', 
+        padding: '0 2rem', 
+        justifyContent: 'center',
+        alignItems: 'center',
+        clipPath: 'inset(8.6% 19.2% 14% 25%)' // Changed last value to 25% to bring in the left crop wall
+      }}>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto" 
+          disablePictureInPicture
+          style={{ 
+            width: '100%', 
+            height: 'auto', 
+            objectFit: 'contain',
+            filter: 'contrast(1.4) brightness(0.78) grayscale(1)',
+            mixBlendMode: 'screen',
+            transform: 'translateX(15px)'
+          }}
+        >
+          <source src={require('./assets/logos/peacock_design.mp4')} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
 
       {/* Elegant Parchment Bottom Loading Bar */}
       <motion.div
