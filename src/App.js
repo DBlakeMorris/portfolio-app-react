@@ -560,12 +560,12 @@ const ProductsPage = () => (
 const speakingEvents = [
   { event: 'Swiss Biotech Day 2026', topic: "Agentic AI in Clinical Trials", location: 'Basel, Switzerland' },
   { event: 'AI Accelerator Institute GenAI Summit London 2026', topic: 'Applied Agentic AI in the Enterprise', location: 'London, UK' },
-  { event: 'Build Agents with Trusted Context 2026', topic: 'Graph-Guided Intelligence Discovery', location: 'London, UK' },
-  { event: 'From Data to Decisions: The Contextual Data Layer For Enterprise AI 2026', topic: 'Graph-Guided Intelligence Discovery', location: 'Cologne, Germany' },
-  { event: 'NASIC AI Workshop 2026', topic: 'Graph-Guided Intelligence Discovery', location: 'Ohio, USA' },
+  { event: 'Activating Arango Webinar 2026', topic: 'Build Agents with Trusted Context', location: 'London, UK' },
+  { event: 'From Data to Decisions Webinar 2026', topic: 'The Contextual Data Layer For Enterprise AI', location: 'Cologne, Germany' },
+  { event: 'NASIC AI Workshop 2026', topic: 'Building Agentic Pipelines with Graph-Guided Intelligence Discovery', location: 'Ohio, USA' },
   { event: 'IEEE International Conference on Big Data 2025', topic: 'Named Entity Recognition for Historical Corpora', location: 'Macau, China' },
   { event: 'AI Accelerator Institute NLP and Computer Vision Summit London 2023', topic: 'NLP in Production Environments', location: 'London, UK' },
-  { event: 'Pegasus Lounge F1 Silverstone 2023', topic: 'AI & Data in High-Performance Environments', location: 'Silverstone, UK' },
+  { event: 'Pegasus Lounge F1 Silverstone 2023', topic: 'AI & Data in Classified Environments', location: 'Silverstone, UK' },
 ]
 
 const SpeakingPage = () => (
