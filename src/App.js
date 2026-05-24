@@ -176,7 +176,7 @@ const GlobalStyles = () => (
     /* ── MOBILE ── */
     @media (max-width: 768px) {
       body { font-size: 16px; }
-      .nav-link { font-size: 0.65rem; letter-spacing: 0.12em; padding: 6px 12px; }
+      .nav-link { font-size: 0.72rem; letter-spacing: 0.15em; padding: 8px 16px; }
       .section-title { font-size: 0.65rem; letter-spacing: 0.22em; margin-bottom: 1.75rem; }
       .btn-primary, .btn-ghost { padding: 12px 20px; font-size: 0.6rem; letter-spacing: 0.12em; width: 100%; max-width: 290px; }
       .product-grid { grid-template-columns: 1fr; }
@@ -186,15 +186,7 @@ const GlobalStyles = () => (
       .testimonial { padding: 1.25rem 1.25rem; }
       .page-inner { padding: 1.5rem 1rem 3rem; }
       .stat-val { font-size: 2.3rem; }
-      
-      /* Mobile optimization for statistics block grid transformation */
-      .about-stats-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 1.5rem !important;
-      }
-    }
-    @media (max-width: 480px) {
-      .nav-link { font-size: 0.58rem; letter-spacing: 0.08em; padding: 4px 8px; }
+      .about-stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 1.5rem !important; }
     }
   `}</style>
 )
@@ -260,7 +252,7 @@ const HomePage = ({ showSplash }) => {
   }, [])
 
   return (
-    <div className="page no-scroll">
+    <div className="page no-scroll" style={{ height: 'calc(var(--vh, 1vh) * 100 - 64px)' }}>
       <motion.div
         variants={pageVariants} initial="initial" animate="animate" exit="exit"
         style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%', justifyContent: 'space-between' }}
@@ -273,7 +265,7 @@ const HomePage = ({ showSplash }) => {
           />
           <h1 style={{ 
             fontFamily: "'Cormorant Garamond', Georgia, serif", 
-            fontSize: isMobile ? '3rem' : 'clamp(2.5rem, 8vw, 6.5rem)', 
+            fontSize: isMobile ? '2.8rem' : 'clamp(2.5rem, 8vw, 6.5rem)', 
             fontWeight: 300, 
             letterSpacing: '0.08em', 
             color: C.cream, 
@@ -481,6 +473,17 @@ export default function Portfolio() {
 
   const ActivePage = PAGES[activePage]
 
+  // Track exact mobile viewport sizes to counteract dynamic device toolbar metrics
+  useEffect(() => {
+    const handleResize = () => {
+      const vh = window.innerHeight * 0.01
+      document.documentElement.style.setProperty('--vh', `${vh}px`)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   return (
     <>
       <GlobalStyles />
@@ -488,7 +491,7 @@ export default function Portfolio() {
       <ParticleBackground />
       <AnimatePresence>{showSplash && <SplashScreen onDone={() => setShowSplash(false)} />}</AnimatePresence>
 
-      <div style={{ position: 'fixed', inset: 0, zIndex: 2, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ position: 'fixed', inset: 0, zIndex: 2, display: 'flex', flexDirection: 'column', height: 'calc(var(--vh, 1vh) * 100)' }}>
 
         {/* ── HEADER ── */}
         <header style={{
@@ -496,15 +499,22 @@ export default function Portfolio() {
           background: 'rgba(8,24,8,0.95)',
           borderBottom: `1px solid ${C.border}`,
           backdropFilter: 'blur(20px)',
+          position: 'relative'
         }}>
+          {/* Visual gradient edge filter to indicate touch horizontal scroll capacity */}
+          <div style={{
+            position: 'absolute', right: 0, top: 0, bottom: 0, width: 32,
+            background: 'linear-gradient(to left, rgba(8,24,8,0.95), transparent)',
+            pointerEvents: 'none', zIndex: 55
+          }} />
+          
           <nav style={{
             maxWidth: 1100, margin: '0 auto', height: '100%',
             display: 'flex', justifyContent: 'safe center', alignItems: 'center',
             padding: '0 1rem', overflowX: 'auto',
             WebkitOverflowScrolling: 'touch',
           }}>
-            {/* Mobile padding spacer to ensure first link doesn't run flat against viewport edge */}
-            <div style={{ width: 4, flexShrink: 0 }} />
+            <div style={{ width: 8, flexShrink: 0 }} />
             {NAV_ITEMS.map((s) => (
               <button
                 key={s}
@@ -514,13 +524,12 @@ export default function Portfolio() {
                 {s}
               </button>
             ))}
-            {/* Mobile padding spacer to ensure final link doesn't run flat against viewport edge */}
-            <div style={{ width: 16, flexShrink: 0 }} />
+            <div style={{ width: 24, flexShrink: 0 }} />
           </nav>
         </header>
 
         {/* ── PAGE CONTENT ── */}
-        <div style={{ flex: 1, position: 'relative' }}>
+        <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
           <AnimatePresence mode="wait">
             <ActivePage key={activePage} showSplash={showSplash} />
           </AnimatePresence>
