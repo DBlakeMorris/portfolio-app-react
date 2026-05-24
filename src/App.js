@@ -167,7 +167,7 @@ const GlobalStyles = () => (
     .stat-label { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.3em; color: ${C.parchmentDim}; text-transform: uppercase; margin-top: 0.3rem; }
 
     /* Grain */
-    .grain-overlay { position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.28; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"); }
+    .grain-overlay { position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.68; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"); }
     #tsparticles { position: fixed !important; }
 
     /* ── MOBILE ── */
