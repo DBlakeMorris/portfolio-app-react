@@ -392,9 +392,36 @@ const AboutPage = () => (
 )
 
 const products = [
-  { name: 'Contextus', tagline: 'Graph-Guided Agentic Discovery', description: "Contextus goes beyond RAG. It trains a GNN over a domain knowledge graph to surface latent connections that don't exist explicitly in any document — inferring unknown relationships from the structure of the graph itself. A LangGraph ReAct agent then reasons over multi-hop traversal results, delivering explainable, relationship-aware answers. Domain-agnostic by design: swap the knowledge graph, keep the architecture.", useCases: ['Intelligence & Defence — non-obvious entity connections across datasets', 'Life Sciences — drug-target repurposing via latent relationship discovery', 'Enterprise Knowledge — inferring relationships between documents, topics, and risk domains'] },
-  { name: 'Sentinel', tagline: 'A Temporal and Living Impact Analysis', description: "Live network telemetry streams continuously into Arango — the graph is alive, mutating in real time. Sentinel monitors emerging structural patterns, calculates blast radius instantly on failure events, and reasons counterfactually. Monte Carlo simulations rank the most likely future failure paths before they happen. Engineers get a natural language incident report, not a raw query result.", useCases: ['Telecoms — live topology monitoring and reactive impact analysis across Network Digital Twins', 'Supply chain — detecting cascading disruption across multi-tier supplier networks', 'Critical infrastructure — power grids, water networks, transport systems'] },
-  { name: 'Arbiter', tagline: 'Causal Graph Reasoning', description: "Where Contextus finds unknown relationships and Sentinel predicts cascading failure, Arbiter determines why things happen — distinguishing genuine cause and effect from coincidental correlation. It constructs a causal DAG within Arango and applies Pearl's do-calculus to reason over directed causal paths. This isn't pattern matching. This is machine causation.", useCases: ['Telecoms — true root cause analysis, beyond blast radius to the originating causal chain', 'Pharma — determining whether a drug intervention caused an outcome vs. correlating with it', 'Financial services — causal attribution of market events and portfolio contagion'] },
+ { 
+    name: 'Contextus', 
+    tagline: 'Graph-Neural Agentic Discovery Architecture', 
+    description: 'An advanced cognitive framework designed to transcend basic vector-search RAG paradigms. The architecture trains a Graph Neural Network (GNN) over structural domain knowledge bases to uncover and infer latent, non-obvious relationships embedded within graph topologies. An integrated LangGraph ReAct orchestration agent executes precise, multi-hop path traversals over the structural inferences, generating explainable, context-weighted intelligence vectors. The entire pipeline is completely domain-agnostic, enabling instantaneous structural adaptation simply by hot-swapping the underlying knowledge database.', 
+    useCases: [
+      'Intelligence & Defence — mapping non-obvious entity networks and hidden adversarial connections across heterogeneous state datasets', 
+      'Life Sciences — accelerating drug-target repurposing and molecular interactions via latent structural path discovery', 
+      'Enterprise Knowledge — synthesizing latent risk dependencies and thematic correlations across disconnected document domains'
+    ] 
+  },
+  { 
+    name: 'Sentinel', 
+    tagline: 'Real-Time Temporal & Network Topology Impact Analyzer', 
+    description: 'A high-throughput telemetry processing pipeline engineered to ingest streaming network state data into live, mutating graph structures in real time. Sentinel continuously monitors structural graph drift, instantly computing exact cascading blast-radii upon systemic network failure triggers. Integrated counterfactual reasoning models combine with recursive Monte Carlo simulations to preemptively isolate and rank highly probable future failure vectors, transforming complex structural alerts into highly actionable, natural language incident post-mortems.', 
+    useCases: [
+      'Telecom Operations — real-time topology mapping and active cascade impact analysis across complex Network Digital Twins', 
+      'Supply Chain Resilience — detecting structural fragility and predicting compounding bottlenecks across multi-tier global supplier networks', 
+      'Critical Infrastructure — mapping predictive failure paths and vulnerability matrices across sovereign power grids and transport networks'
+    ] 
+  },
+  { 
+    name: 'Arbiter', 
+    tagline: 'Causal Directed Acyclic Graph (DAG) Reasoning Engine', 
+    description: 'A mathematical reasoning architecture built to systematically differentiate true cause-and-effect vectors from circumstantial data correlations. The platform maps structural data inputs into a validated causal Directed Acyclic Graph (DAG) within the graph infrastructure, programmatically applying Judea Pearl’s do-calculus calculus to compute exact causal effects across directed pathways. Moving far beyond shallow pattern-matching algorithms, Arbiter delivers true machine causation capabilities, bringing deterministic, auditable root-cause analytics to unstructured data streams.', 
+    useCases: [
+      'Root-Cause Telemetry — diagnosing structural network errors beyond simple blast radius metrics to isolate the originating causal genesis', 
+      'Pharma & Clinical Analytics — quantifying deterministic clinical intervention outcomes vs. compounding environmental baseline correlations', 
+      'Systemic Financial Risk — tracing causal attribution vectors of sudden market anomalies and tracking cascading systemic portfolio contagion'
+    ] 
+  },
   { 
     name: 'Subreddit Constitution Generator', 
     tagline: 'Algorithmic Community Governance Architecture', 
