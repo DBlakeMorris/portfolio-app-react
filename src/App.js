@@ -1,509 +1,374 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Particles from "react-particles"
 import { loadSlim } from "tsparticles-slim"
-import { ChevronDown, Mail, Calendar, Linkedin, Github, ArrowUp } from 'lucide-react'
-import { Button } from "./components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card"
-import { Progress } from "./components/ui/progress" 
-import { useInView } from 'react-intersection-observer'
-import { Badge } from "./components/ui/badge"
-import SkillsSection from './components/SkillsSection'
+import { Mail, Calendar, Linkedin, Github, ArrowUp } from 'lucide-react'
 import SimpleRotatingTitle from './components/SimpleRotatingTitle';
 
-const ParticleBackground = () => {
-  const particlesInit = useCallback(async (engine) => {
-    await loadSlim(engine)
-  }, [])
+import redditLogo from './assets/logos/Reddit-New-2023-Logo-Vector.svg-.png'
+import arangoLogo from './assets/logos/favicon.svg'
+import anthropicLogo from './assets/logos/anthropic-text.png'
+import googleLogo from './assets/logos/google_logo_icon_169090.webp'
+import hgLogo from './assets/logos/Hugging_Face_White_Logo.webp'
+import ieeeLogo from './assets/logos/logo-masterbrand-white-transparent.webp'
+import loughboroughLogo from './assets/logos/Loughborough-Univeristy-Lboro-Logo.png'
+import oxfordLogo from './assets/logos/oxford-university-logo-university-of-oxford-college-school-student-education-united-kingdom-crest-png-clipart.jpg'
+import queensLogo from "./assets/logos/Queens_Red_Log.svg.png"
+import rssLogo from './assets/logos/Royal_Statistical_Society_logo.svg.png'
+import innovateLogo from './assets/logos/UKRI_IUK-Logo_Horiz-RGB.png'
+import lancasterLogo from './assets/logos/bg-logo-white.png'
+import aclLogo from './assets/logos/Association_for_Computational_Linguistics_logo.svg.png'
+import fcdoLogo from './assets/logos/FCO-logo-footer-trans.png'
 
-  return (
-    <Particles
-      id="tsparticles"
-      init={particlesInit}
-      options={{
-        background: {
-          color: {
-            value: "#000000",
-          },
-        },
-        fpsLimit: 120,
-        interactivity: {
-          events: {
-            onClick: {
-              enable: false,
-            },
-            onHover: {
-              enable: true,
-              mode: "repulse",
-            },
-            resize: true,
-          },
-          modes: {
-            push: {
-              quantity: 4,
-            },
-            repulse: {
-              distance: 200,
-              duration: 0.4,
-            },
-          },
-        },
-        particles: {
-          color: {
-            value: "#ffffff",
-          },
-          links: {
-            color: "#ffffff",
-            distance: 150,
-            enable: true,
-            opacity: 0.5,
-            width: 1,
-          },
-          move: {
-            direction: "none",
-            enable: true,
-            outModes: {
-              default: "bounce",
-            },
-            random: false,
-            speed: 1,
-            straight: false,
-          },
-          number: {
-            density: {
-              enable: true,
-              area: 800,
-            },
-            value: 80,
-          },
-          opacity: {
-            value: 0.5,
-          },
-          shape: {
-            type: "circle",
-          },
-          size: {
-            value: { min: 1, max: 5 },
-          },
-        },
-        detectRetina: true,
-      }}
-      className="fixed inset-0 z-0"
-    />
-  )
+const C = {
+  racing:'#081808', green:'#152e15',
+  eton:'#96c8a2', etonDim:'#4a7a54',
+  cream:'#f2ead8', creamDim:'#c8bfaa', creamFaint:'#7a7060',
+  parchment:'#d4b896', parchmentDim:'#8a6f50',
+  border:'rgba(242,234,216,0.08)',
 }
 
-const TextAnimation = ({ children }) => {
+// ── PEACOCK SPLASH ─────────────────────────────────────────────────────────────
+const SplashScreen = ({ onDone }) => {
+  useEffect(() => {
+    const t = setTimeout(onDone, 2200)
+    return () => clearTimeout(t)
+  }, [onDone])
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      className="text-white font-bold"
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      style={{ position: 'fixed', inset: 0, zIndex: 9999, background: '#000' }}
     >
-      {children}
+      {/* Loading bar — parchment, sweeps left to right over 2s */}
+      <motion.div
+        style={{
+          position: 'absolute', bottom: 0, left: 0,
+          height: '1px', width: '100%',
+          background: `linear-gradient(to right, transparent, ${C.parchment}, transparent)`,
+          transformOrigin: 'left',
+        }}
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 1.9, delay: 0.15, ease: [0.4, 0, 0.2, 1] }}
+      />
     </motion.div>
   )
 }
 
-const Section = ({ id, title, children, isHome = false }) => {
-  const { scrollYProgress } = useScroll()
-  const opacity = useTransform(scrollYProgress, 
-    [0, 0.2, 0.8, 1], 
-    isHome ? [1, 1, 1, 1] : [0.8, 1, 1, 0.8]
-  )
+// ── Global Styles ──────────────────────────────────────────────────────────────
+const GlobalStyles = () => (
+  <style>{`
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300;1,400&family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { scroll-padding-top: 72px; }
+    html { scroll-behavior: smooth; }
+    body { background: ${C.racing}; color: ${C.cream}; font-family: 'EB Garamond', Georgia, serif; font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    ::selection { background: ${C.eton}; color: ${C.racing}; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: ${C.racing}; }
+    ::-webkit-scrollbar-thumb { background: ${C.etonDim}; }
 
+    .nav-link { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.22em; color: ${C.creamDim}; background: none; border: none; cursor: pointer; padding: 6px 16px; transition: color 0.3s ease; text-transform: uppercase; }
+    .nav-link:hover { color: ${C.eton}; }
+    .nav-link.active { color: ${C.eton}; border-bottom: 1px solid ${C.eton}; }
+
+    .section-title { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.38em; color: ${C.parchment}; text-transform: uppercase; margin-bottom: 3.5rem; display: flex; align-items: center; gap: 1.5rem; }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, ${C.eton}, transparent); }
+
+    .btn-primary, .btn-ghost { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; border: 1px solid ${C.cream}; color: ${C.cream}; background: transparent; padding: 14px 0; width: 220px; cursor: pointer; transition: all 0.35s ease; display: inline-flex; align-items: center; justify-content: center; gap: 8px; box-shadow: none; }
+    .btn-primary:hover, .btn-ghost:hover { background: ${C.eton}; color: ${C.racing}; border-color: ${C.eton}; }
+
+    .btn-sm { font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid ${C.border}; color: ${C.creamDim}; background: transparent; padding: 8px 18px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 6px; }
+    .btn-sm:hover { border-color: ${C.eton}; color: ${C.eton}; }
+
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1px; background: ${C.border}; }
+    .product-card { background: ${C.racing}; padding: 2.5rem; transition: background 0.3s ease; position: relative; overflow: hidden; }
+    .product-card::before { content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 0; background: ${C.eton}; transition: height 0.4s ease; }
+    .product-card:hover { background: rgba(21,46,21,0.7); }
+    .product-card:hover::before { height: 100%; }
+    .product-name { font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 500; color: ${C.cream}; margin-bottom: 0.3rem; letter-spacing: 0.06em; }
+    .product-tagline { font-style: italic; font-size: 0.85rem; color: ${C.creamFaint}; margin-bottom: 1.25rem; }
+    .product-desc { font-size: 0.88rem; color: ${C.creamDim}; line-height: 1.7; margin-bottom: 1.5rem; }
+    .use-case-label { font-family: 'Cinzel', serif; font-size: 0.48rem; letter-spacing: 0.3em; color: ${C.parchmentDim}; text-transform: uppercase; margin-bottom: 0.75rem; }
+    .use-case-item { font-size: 0.85rem; color: ${C.creamDim}; padding: 0.35rem 0; border-bottom: 1px solid rgba(242,234,216,0.04); display: flex; align-items: flex-start; gap: 0.75rem; }
+    .use-case-item::before { content: '—'; color: ${C.etonDim}; flex-shrink: 0; }
+
+    .speaking-timeline { border-left: 1px solid ${C.border}; }
+    .speaking-row { display: flex; gap: 2.5rem; padding: 2rem 0 2rem 2.5rem; border-bottom: 1px solid ${C.border}; transition: background 0.2s; position: relative; }
+    .speaking-row::before { content: ''; position: absolute; left: -4px; top: 50%; transform: translateY(-50%); width: 7px; height: 7px; background: ${C.racing}; border: 1px solid ${C.parchmentDim}; border-radius: 50%; transition: all 0.3s; }
+    .speaking-row:hover { background: rgba(242,234,216,0.02); }
+    .speaking-row:hover::before { background: ${C.eton}; border-color: ${C.eton}; }
+    .speaking-year { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.15em; color: ${C.parchmentDim}; width: 3rem; flex-shrink: 0; padding-top: 0.25rem; }
+    .speaking-event { font-family: 'Cinzel', serif; font-size: 0.82rem; color: ${C.cream}; margin-bottom: 0.4rem; letter-spacing: 0.04em; }
+    .speaking-topic { font-style: italic; font-size: 0.9rem; color: ${C.creamDim}; margin-bottom: 0.35rem; }
+    .speaking-location { font-family: 'Cinzel', serif; font-size: 0.48rem; letter-spacing: 0.22em; color: ${C.eton}; text-transform: uppercase; }
+
+    .pub-row { display: flex; gap: 1.5rem; padding: 1.4rem 0; border-bottom: 1px solid ${C.border}; transition: background 0.2s; align-items: flex-start; }
+    .pub-row:hover { background: rgba(242,234,216,0.02); }
+    .pub-num { font-family: 'Cinzel', serif; font-size: 0.55rem; color: ${C.parchmentDim}; width: 2rem; flex-shrink: 0; padding-top: 0.2rem; letter-spacing: 0.1em; }
+    .pub-title { font-size: 0.95rem; color: ${C.cream}; line-height: 1.55; margin-bottom: 0.4rem; }
+    .pub-meta { font-family: 'Cinzel', serif; font-size: 0.48rem; letter-spacing: 0.22em; color: ${C.eton}; text-transform: uppercase; }
+
+    .testimonial { border-left: 2px solid ${C.parchmentDim}; padding: 2rem 2.5rem; margin-bottom: 2rem; background: rgba(21,46,21,0.2); transition: all 0.3s; }
+    .testimonial:hover { border-left-color: ${C.eton}; background: rgba(21,46,21,0.4); }
+    .testimonial-quote { font-style: italic; font-size: 1.05rem; color: ${C.creamDim}; line-height: 1.85; margin-bottom: 1.5rem; }
+    .testimonial-name { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.18em; color: ${C.cream}; text-transform: uppercase; }
+    .testimonial-title { font-size: 0.85rem; font-style: italic; color: ${C.creamFaint}; margin-top: 0.25rem; }
+
+    .logo-reel-wrap { overflow: hidden; border-top: 1px solid ${C.border}; padding: 16px 0; background: rgba(8,24,8,0.97); }
+    @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .logo-track { display: flex; width: max-content; animation: scroll-left 40s linear infinite; }
+    .logo-track:hover { animation-play-state: paused; }
+
+    .stat-val { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: ${C.eton}; line-height: 1; }
+    .stat-label { font-family: 'Cinzel', serif; font-size: 0.48rem; letter-spacing: 0.3em; color: ${C.parchmentDim}; text-transform: uppercase; margin-top: 0.3rem; }
+
+    .back-top { position: fixed; bottom: 2rem; right: 2rem; width: 36px; height: 36px; border: 1px solid ${C.border}; background: ${C.racing}; color: ${C.creamDim}; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; z-index: 100; }
+    .back-top:hover { background: ${C.eton}; color: ${C.racing}; border-color: ${C.eton}; }
+
+    .grain-overlay { position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.28; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"); }
+    #tsparticles { position: fixed !important; }
+  `}</style>
+)
+
+const ParticleBackground = () => {
+  const particlesInit = useCallback(async (engine) => { await loadSlim(engine) }, [])
   return (
-    <motion.section
-      id={id}
-      className={`py-20 min-h-screen flex flex-col justify-center relative z-10 ${isHome ? 'pt-0' : ''}`}
-      style={{ opacity }}
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-    >
-      <div className="container mx-auto px-4">
-        {!isHome && (
-          <TextAnimation>
-            <h2 className="text-4xl font-sans mb-8 text-white font-bold tracking-tight uppercase">{title}</h2>
-          </TextAnimation>
-        )}
-        {children}
-      </div>
-    </motion.section>
+    <Particles id="tsparticles" init={particlesInit}
+      options={{
+        background: { color: { value: C.racing } }, fpsLimit: 60,
+        interactivity: { events: { onHover: { enable: true, mode: "repulse" }, resize: true }, modes: { repulse: { distance: 100, duration: 0.4 } } },
+        particles: { color: { value: C.eton }, links: { color: C.etonDim, distance: 140, enable: true, opacity: 0.15, width: 0.6 }, move: { enable: true, speed: 0.4, outModes: { default: "bounce" } }, number: { density: { enable: true, area: 1000 }, value: 55 }, opacity: { value: 0.2 }, shape: { type: "circle" }, size: { value: { min: 1, max: 1.8 } } },
+        detectRetina: true,
+      }}
+      style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}
+    />
   )
 }
 
+const logos = [
+  { src: redditLogo, alt: 'Reddit' },
+  { src: arangoLogo, alt: 'Arango' },
+  { src: anthropicLogo, alt: 'Anthropic' },
+  { src: googleLogo, alt: 'Google' },
+  { src: hgLogo, alt: 'Hugging Face' },
+  { src: ieeeLogo, alt: 'IEEE' },
+  { src: loughboroughLogo, alt: 'Loughborough University' },
+  { src: queensLogo, alt: "Queen's University Belfast" },
+  { src: rssLogo, alt: 'Royal Statistical Society' },
+  { src: innovateLogo, alt: 'Innovate UK' },
+  { src: lancasterLogo, alt: 'Lancaster University' },
+  { src: aclLogo, alt: 'ACL' },
+  { src: fcdoLogo, alt: 'FCDO Services' },
+]
+
+const LogoReel = () => {
+  const doubled = [...logos, ...logos]
+  return (
+    <div className="logo-reel-wrap">
+      <div className="logo-track">
+        {doubled.map((logo, i) => (
+          <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 120, height: 44, margin: '0 40px', flexShrink: 0 }}>
+            <img src={logo.src} alt={logo.alt} style={{ maxHeight: 36, maxWidth: 110, objectFit: 'contain', opacity: 0.65 }} />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+const products = [
+  { name: 'Contextus', tagline: 'Graph-Guided Agentic Discovery', description: "Contextus goes beyond RAG. It trains a GNN over a domain knowledge graph to surface latent connections that don't exist explicitly in any document — inferring unknown relationships from the structure of the graph itself. A LangGraph ReAct agent then reasons over multi-hop traversal results, delivering explainable, relationship-aware answers. Domain-agnostic by design: swap the knowledge graph, keep the architecture.", useCases: ['Intelligence & Defence — non-obvious entity connections across datasets', 'Life Sciences — drug-target repurposing via latent relationship discovery', 'Enterprise Knowledge — inferring relationships between documents, topics, and risk domains'] },
+  { name: 'Sentinel', tagline: 'A Temporal and Living Impact Analysis', description: "Live network telemetry streams continuously into Arango — the graph is alive, mutating in real time. Sentinel monitors emerging structural patterns, calculates blast radius instantly on failure events, and reasons counterfactually. Monte Carlo simulations rank the most likely future failure paths before they happen. Engineers get a natural language incident report, not a raw query result.", useCases: ['Telecoms — live topology monitoring and reactive impact analysis across Network Digital Twins', 'Supply chain — detecting cascading disruption across multi-tier supplier networks', 'Critical infrastructure — power grids, water networks, transport systems'] },
+  { name: 'Arbiter', tagline: 'Causal Graph Reasoning', description: "Where Contextus finds unknown relationships and Sentinel predicts cascading failure, Arbiter determines why things happen — distinguishing genuine cause and effect from coincidental correlation. It constructs a causal DAG within Arango and applies Pearl's do-calculus to reason over directed causal paths. This isn't pattern matching. This is machine causation.", useCases: ['Telecoms — true root cause analysis, beyond blast radius to the originating causal chain', 'Pharma — determining whether a drug intervention caused an outcome vs. correlating with it', 'Financial services — causal attribution of market events and portfolio contagion'] },
+  { name: 'Subreddit Constitution Generator', tagline: 'AI-Powered Community Policy Generation', description: 'Built at Reddit — the first subreddit rules generator at enterprise scale, handling thousands of daily requests with automated policy generation. CEO-commissioned project and "Big Thinking" prize nominee.', useCases: ['Community moderation at scale', 'Automated policy generation across thousands of subreddits'] },
+  { name: 'GDPR Taxonomist', tagline: 'Secure Document Classification for Classified Environments', description: 'Transformer-based SRS system with multi-head attention. Deployed into 10 Downing Street, Home Office and Cabinet Office via FCDO Services.', useCases: ['Classified government document processing', 'GDPR compliance detection at scale'] },
+  { name: 'DSR Executive', tagline: 'Offline Retrieval-Augmented Generation for Classified Use', description: 'Offline quantized RAG infrastructure for classified document analysis, achieving incredible accuracy on expert-validated queries while ensuring air-gapped security. Reduced document analysis from hours to minutes.', useCases: ['Classified government intelligence', 'Secure offline document analysis'] },
+  { name: 'Policy Guardian', tagline: 'Enterprise Policy Validation', description: 'Context-aware, document-grounded RAG assistant for corporate policy validation.', useCases: ['Corporate policy validation', 'Regulated environment document analysis', 'Financial institution compliance'] },
+]
+
+const speakingEvents = [
+  { event: 'Swiss Biotech Day 2026', topic: "Agentic AI in Clinical Trials: The Real Challenge Isn't Automation — It's Trust", location: 'Basel, Switzerland' },
+  { event: 'AIAI GenAI Summit London 2026', topic: 'Applied Agentic AI in the Enterprise', location: 'London, UK' },
+  { event: 'NASIC AI Workshop 2026', topic: 'Graph-Guided Intelligence Discovery', location: 'Ohio, USA' },
+  { event: 'IEEE International Conference on Big Data 2025', topic: 'Named Entity Recognition for Historical Corpora', location: 'Macau, China' },
+  { event: 'AIAI NLP and Computer Vision 2023', topic: 'NLP in Production Environments', location: 'London, UK' },
+  { event: 'Pegasus Lounge F1 Silverstone 2023', topic: 'AI & Data in High-Performance Environments', location: 'Silverstone, UK' },
+]
+
+const publications = [
+  { title: "Agentic AI in Clinical Trials: The Real Challenge Isn't Automation — It's Trust", publisher: 'Arango', date: 'May 2026' },
+  { title: 'The Missing Layer in OpenClaw Agent Architectures: Contextual Data', publisher: 'Arango', date: 'Apr 2026' },
+  { title: 'Designing Hybrid Systems with LightRAG and Arango', publisher: 'Arango', date: 'Mar 2026' },
+  { title: 'Psychology, Ethics, and AI in Online Higher Education', publisher: 'IGI Global Scientific Publishing', date: 'Feb 2026' },
+  { title: 'Enhanced Old English NER via Morphology-Aware Analysis, Cross-Germanic Transfer, and Domain-Specific Patterns', publisher: 'IEEE', date: 'Dec 2025' },
+  { title: 'Nerthus-Project/Old_English-OEDT-NER', publisher: 'Hugging Face', date: 'Sep 2025' },
+  { title: "Uncovering Margaret Paston's Hidden Voice: Forensic Linguistics and 500-Year-Old Letters", publisher: 'Medievalists.net', date: 'Jun 2025' },
+  { title: 'Articulation Disorder Support and Prosody Training with the International Phonetic Alphabet', publisher: "Queen's University Belfast", date: 'Jun 2024' },
+  { title: 'The Linguistic Fingerprint and Authorship Dictation of Margaret Paston (née Mautby) (1420–1484)', publisher: 'Lancaster University', date: 'Feb 2021' },
+  { title: 'A Critical Discourse Analysis: Linguistic Landscape Research', publisher: 'Lancaster University', date: 'Jun 2020' },
+]
+
+const testimonials = [
+  { quote: "Daniel played a key role in fine-tuning various models to align their behavior with Reddit's unique data. His work consistently reflected a high level of attention to detail, and he demonstrated strong problem-solving skills by regularly proposing effective alternative solutions when challenges arose. Daniel took ownership of his responsibilities with impressive independence.", name: 'Jose Luis Martinez', title: 'Director of Engineering, Reddit', linkedin: 'https://www.linkedin.com/in/jlmartinezfernandez/' },
+  { quote: "The RAG system Daniel built was a pivotal proof-of-concept. It successfully demonstrated how a context-aware, document-grounded AI assistant should work in practice — both in terms of architecture and user interaction. This helped steer us toward the containerised, scalable design we eventually adopted. The tool — now evolved — is currently available via the Azure Marketplace as a 1-touch deployment solution.", name: 'ISx4 Leadership', title: 'Director, ISx4', linkedin: null },
+]
 
 const BackToTopButton = () => {
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true)
-      } else {
-        setIsVisible(false)
-      }
-    }
-
-    window.addEventListener('scroll', toggleVisibility)
-
-    return () => window.removeEventListener('scroll', toggleVisibility)
-  }, [])
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    })
-  }
-
+  const [visible, setVisible] = useState(false)
+  useEffect(() => { const t = () => setVisible(window.pageYOffset > 400); window.addEventListener('scroll', t); return () => window.removeEventListener('scroll', t) }, [])
   return (
     <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          className="fixed bottom-4 right-4 z-50"
-        >
-          <Button
-            variant="secondary"
-            size="icon"
-            onClick={scrollToTop}
-            className="rounded-full shadow-lg"
-            aria-label="Back to top"
-          >
-            <ArrowUp className="h-4 w-4" />
-          </Button>
-        </motion.div>
+      {visible && (
+        <motion.button className="back-top" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Back to top">
+          <ArrowUp size={12} />
+        </motion.button>
       )}
     </AnimatePresence>
   )
 }
 
 export default function Portfolio() {
-  const [activeSection, setActiveSection] = useState('')
+  const [showSplash, setShowSplash] = useState(true)
+  const [activeSection, setActiveSection] = useState('home')
   const [isScrolled, setIsScrolled] = useState(false)
-  const [showArrow, setShowArrow] = useState(true)
 
+  useEffect(() => { const onScroll = () => setIsScrolled(window.scrollY > 40); window.addEventListener('scroll', onScroll); return () => window.removeEventListener('scroll', onScroll) }, [])
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-      setShowArrow(window.scrollY < 100)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    const observer = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) setActiveSection(e.target.id) }), { rootMargin: '-20% 0px -60% 0px', threshold: 0 })
+    document.querySelectorAll('section[id]').forEach((s) => observer.observe(s))
+    return () => observer.disconnect()
   }, [])
 
-  useEffect(() => {
-    const handleIntersection = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id)
-        }
-      })
-    }
-
-    const observer = new IntersectionObserver(handleIntersection, {
-      root: null,
-      rootMargin: '-10% 0px -10% 0px',
-      threshold: 0.1
-    })
-
-    const sections = document.querySelectorAll('section')
-    sections.forEach((section) => observer.observe(section))
-
-    return () => {
-      sections.forEach((section) => observer.unobserve(section))
-    }
-  }, [])
-
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      const yOffset = -60 
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
-      window.scrollTo({top: y, behavior: 'smooth'})
-      setActiveSection(sectionId)
-    }
-  }
-
-  const navItems = ['home', 'about', 'experience', 'education', 'skills']
+  const scrollTo = (id) => { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }); setActiveSection(id) }
+  const navItems = ['home', 'about', 'products', 'speaking', 'publications', 'testimonials']
 
   return (
-    <motion.div 
-      className="bg-black text-white min-h-screen font-sans relative"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-    >
-      <style>{`
-        @keyframes pulse {
-          0% { transform: scale(1); }
-          50% { transform: scale(1.05); }
-          100% { transform: scale(1); }
-        }
-
-        .clock-pulse {
-          animation: pulse 2s infinite;
-        }
-        :root {
-          --scroll-padding-top: 60px;
-        }
-        html {
-          scroll-padding-top: var(--scroll-padding-top);
-        }
-      `}</style>
+    <>
+      <GlobalStyles />
+      <div className="grain-overlay" />
       <ParticleBackground />
-      <header className={`fixed top-0 left-0 right-0 ${isScrolled ? 'bg-black bg-opacity-90' : 'bg-transparent'} transition-colors duration-300 z-50 overflow-x-auto`}>
-        <nav className="container mx-auto px-2 py-2 flex justify-center items-center">
-          <ul className="flex flex-row justify-center items-center gap-1 sm:gap-2 overflow-x-auto whitespace-nowrap py-1">
-            {navItems.map((section) => (
-              <li key={section} className="relative z-50">
-                <Button
-                  variant="ghost"
-                  onClick={() => scrollToSection(section)}
-                  className={`
-                    text-xs sm:text-sm md:text-base lg:text-lg uppercase tracking-wider hover:text-primary transition-colors px-1 sm:px-2 py-1
-                    ${activeSection === section ? 'text-primary font-bold border-b-2 border-primary' : 'text-gray-400'}
-                  `}
-                >
-                  {section}
-                </Button>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </header>
+      <AnimatePresence>{showSplash && <SplashScreen onDone={() => setShowSplash(false)} />}</AnimatePresence>
 
-      <main className="relative z-20">
-        <Section id="home" title="" isHome={true}>
-          <div className="flex flex-col items-center justify-center min-h-screen text-center px-4">
-            <TextAnimation>
-              <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold mb-6 sm:mb-8">D.B. Morris</h1>
-            </TextAnimation>
-            <SimpleRotatingTitle />
-            <div className="flex flex-row justify-center items-center space-x-2 sm:space-x-4 w-full max-w-md mx-auto">
-              <Button
-                variant="secondary"
-                size="lg"
-                onClick={() => window.location.href = 'mailto:danielblakemorris@gmail.com'}
-                className="text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 py-2 sm:py-3 flex-1 whitespace-nowrap"
-              >
-                <Mail className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" /> Get in Touch
-              </Button>
-              <Button
-                variant="secondary"
-                size="lg"
-                onClick={() => window.open('https://calendly.com/danielblakemorris/30min', '_blank')}
-                className="text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 py-2 sm:py-3 flex-1 whitespace-nowrap"
-              >
-                <Calendar className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" /> Book a Consultation
-              </Button>
+      <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
+        <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, background: isScrolled ? 'rgba(8,24,8,0.97)' : 'transparent', borderBottom: isScrolled ? `1px solid ${C.border}` : 'none', backdropFilter: isScrolled ? 'blur(20px)' : 'none', transition: 'all 0.4s ease' }}>
+          <nav style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', justifyContent: 'center', alignItems: 'center', height: 64, padding: '0 2rem' }}>
+            {navItems.map((s) => <button key={s} className={`nav-link ${activeSection === s ? 'active' : ''}`} onClick={() => scrollTo(s)}>{s}</button>)}
+          </nav>
+        </header>
+
+        <section id="home" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: showSplash ? 0 : 1, y: showSplash ? 20 : 0 }}
+            transition={{ duration: 1.3, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '80px 2rem 3rem' }}
+          >
+            <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: showSplash ? 0 : 1 }} transition={{ duration: 1.2, delay: 0.5 }} style={{ width: 48, height: 1, background: C.parchment, marginBottom: '2.2rem', transformOrigin: 'center' }} />
+            <h1 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 'clamp(3.5rem, 8vw, 7rem)', fontWeight: 300, letterSpacing: '0.08em', color: C.cream, lineHeight: 1.05, marginBottom: '1rem' }}>D.B. Morris</h1>
+            <div style={{ fontFamily: "'Cinzel', serif", fontSize: '0.6rem', letterSpacing: '0.35em', color: C.creamDim, textTransform: 'uppercase', marginBottom: '1.25rem' }}><SimpleRotatingTitle /></div>
+            <p style={{ fontStyle: 'italic', color: C.creamFaint, maxWidth: 460, marginBottom: '3rem', fontSize: '1rem', lineHeight: 1.8 }}>Architecting intelligence at the edge of what graphs can know.</p>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <button className="btn-primary" onClick={() => window.location.href = 'mailto:danielblakemorris@gmail.com'}><Mail size={12} /> Get in Touch</button>
+              <button className="btn-ghost" onClick={() => window.open('https://calendly.com/danielblakemorris/30min', '_blank')}><Calendar size={12} /> Book a Consultation</button>
+            </div>
+          </motion.div>
+          <LogoReel />
+        </section>
+
+        <section id="about" style={{ padding: '7rem 2rem' }}>
+          <div style={{ maxWidth: 960, margin: '0 auto' }}>
+            <div className="section-title">About</div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'start' }}>
+              <div>
+                <p style={{ fontSize: '1.1rem', lineHeight: 1.85, color: C.cream, marginBottom: '1.5rem' }}>AI Engineering Leader and Solutions Architect with 6+ years delivering enterprise-scale AI systems across Fortune 500 companies and UK government entities including 10 Downing Street.</p>
+                <p style={{ fontSize: '1rem', lineHeight: 1.8, color: C.creamDim, marginBottom: '1.5rem' }}>Currently Lead Solutions Engineer — Applied AI, EMEA at Arango, founding and leading the Innovation Lab — building Contextus, Sentinel and Arbiter, a suite of graph-guided agentic AI platforms. Previously at Reddit, architecting LLM infrastructure serving millions of users.</p>
+                <p style={{ fontSize: '0.95rem', lineHeight: 1.8, color: C.creamDim, marginBottom: '2rem' }}>$46M+ in successful AI engagements. Published across IEEE, IGI Global and ArangoDB. Featured speaker at AIAI, NASIC, IEEE Big Data and Swiss Biotech Day 2026.</p>
+                <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                  <button className="btn-sm" onClick={() => window.open('https://www.linkedin.com/in/daniel-blake-morris', '_blank')}><Linkedin size={11} /> LinkedIn</button>
+                  <button className="btn-sm" onClick={() => window.open('https://github.com/DBlakeMorris', '_blank')}><Github size={11} /> GitHub</button>
+                </div>
+              </div>
+              <div style={{ borderLeft: `1px solid ${C.border}`, paddingLeft: '3rem' }}>
+                {[{ val: '$46M+', label: 'AI Engagements' }, { val: '10', label: 'Publications' }, { val: '6+', label: 'Speaking Events' }, { val: '6+', label: 'Years Experience' }].map((s, i) => (
+                  <div key={i} style={{ marginBottom: '2.25rem' }}><div className="stat-val">{s.val}</div><div className="stat-label">{s.label}</div></div>
+                ))}
+              </div>
             </div>
           </div>
-          {showArrow && (
-            <motion.div
-              className="absolute bottom-24 left-1/2 transform -translate-x-1/2"
-              animate={{ y: [0, 10, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5 }}
-            >
-              <ChevronDown className="h-8 w-8 text-white opacity-50" />
-            </motion.div>
-          )}
-        </Section>
+        </section>
 
-        <Section id="about" title="About Me">
-          <Card className="bg-gray-900 border-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-sm">
-            <CardContent className="p-4 sm:p-6">
-              <p className="mb-4 text-gray-300">
-              Leading Solutions Architect and AI Engineering Leader with 6+ years architecting and delivering enterprise-scale AI systems for Fortune 500 companies and UK government entities. Deep expertise in translating complex business requirements into custom LLMs, quantized RAG systems, and production-grade ML pipelines through complete solution lifecycles from requirements analysis to deployment. Extensive experience in pre-sales technical validation, stakeholder management, and post-sales delivery across complex enterprise environments. Collaborated with high-profile clients and government entities through strategic partnerships with Queen's University, DkIT, Lancaster University and Loughborough University, as well as leading commercial organizations including Reddit, Anthropic, Hugging Face, ISx4 and SVGC Ltd. Successfully led technical sales initiatives and solution delivery resulting in over $46 million in successful AI engagements, with proven expertise in competitive positioning, executive presentations, and C-level stakeholder relationships.
-              </p>
-              <ul className="list-disc list-inside mb-4 text-gray-300">
-                <li>A solutions architect at heart who transforms complex technical challenges into scalable business outcomes.</li>
-                <li>Leading enterprise AI initiatives and stakeholder engagement across government entities, Fortune 500 companies, and cutting-edge technology platforms.</li>
-                <li>Delivered end-to-end solutions from pre-sales through deployment, spanning startups to Fortune 500 enterprises with proven commercial success.</li>
-              </ul>
-              <div className="flex space-x-4">
-                <Button variant="outline" onClick={() => window.open('https://www.linkedin.com/in/daniel-blake-morris', '_blank')} className="bg-white text-black hover:bg-gray-100">
-                  <Linkedin className="mr-2 h-4 w-4" /> LinkedIn
-                </Button>
-                <Button variant="outline" onClick={() => window.open('https://github.com/DBlakeMorris', '_blank')} className="bg-white text-black hover:bg-gray-100">
-                  <Github className="mr-2 h-4 w-4" /> GitHub
-                </Button>
+        <section id="products" style={{ padding: '7rem 2rem' }}>
+          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+            <div className="section-title">Products</div>
+            <div className="product-grid">
+              {products.map((p, i) => (
+                <div key={i} className="product-card">
+                  <div className="product-name">{p.name}</div>
+                  <div className="product-tagline">{p.tagline}</div>
+                  <div className="product-desc">{p.description}</div>
+                  <div className="use-case-label">Use Cases</div>
+                  {p.useCases.map((uc, j) => <div key={j} className="use-case-item">{uc}</div>)}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="speaking" style={{ padding: '7rem 2rem' }}>
+          <div style={{ maxWidth: 860, margin: '0 auto' }}>
+            <div className="section-title">Speaking</div>
+            <div className="speaking-timeline">
+              {speakingEvents.map((e, i) => (
+                <div key={i} className="speaking-row">
+                  <div className="speaking-year">{e.event.match(/\d{4}/)?.[0] || '—'}</div>
+                  <div><div className="speaking-event">{e.event.replace(/\d{4}/, '').trim()}</div><div className="speaking-topic">{e.topic}</div><div className="speaking-location">{e.location}</div></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="publications" style={{ padding: '7rem 2rem' }}>
+          <div style={{ maxWidth: 860, margin: '0 auto' }}>
+            <div className="section-title">Publications</div>
+            {publications.map((pub, i) => (
+              <div key={i} className="pub-row">
+                <span className="pub-num">{String(i + 1).padStart(2, '0')}</span>
+                <div><div className="pub-title">{pub.title}</div><div className="pub-meta">{pub.publisher} &nbsp;·&nbsp; {pub.date}</div></div>
               </div>
-            </CardContent>
-          </Card>
-        </Section>
-
-        <Section id="experience" title="Experience">
-          <div className="space-y-12">
-
-          <Card className="bg-gray-900 border-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-sm">
-              <CardContent className="p-4 sm:p-6">
-                <h3 className="text-xl font-semibold mb-2 text-white">Solutions Architect</h3>
-                <p className="text-gray-400 mb-2">November 2025 to Present</p>
-                <p className="text-lg font-semibold mb-2 text-white">Arango</p>
-                <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li></li>
-                </ul>
-                <h4 className="text-lg font-semibold mb-2 text-white">Key Achievements:</h4>
-                <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li></li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gray-900 border-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-sm">
-              <CardContent className="p-4 sm:p-6">
-                <h3 className="text-xl font-semibold mb-2 text-white">CTO & Solutions Architect</h3>
-                <p className="text-gray-400 mb-2">April 2025 to Nov 2025</p>
-                <p className="text-lg font-semibold mb-2 text-white">Stealth Startup</p>
-                <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li>Leading technical architecture and solution design for AI-powered consumer platform.</li>
-                  <li>Managing complete solution lifecycle from technical strategy through stakeholder engagement.</li>
-                  <li>Directing pre-sales initiatives and partnership development with enterprise clients.</li>
-                </ul>
-                <h4 className="text-lg font-semibold mb-2 text-white">Key Achievements:</h4>
-                <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li>Secured strategic partnerships for market validation and platform integration.</li>
-                  <li>Led technical strategy development supporting funding acquisition efforts.</li>
-                  <li>Established enterprise client relationships and proof of concept frameworks.</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gray-900 border-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-sm">
-              <CardContent className="p-4 sm:p-6">
-                <h3 className="text-xl font-semibold mb-2 text-white">AI/ML Engineer</h3>
-                <p className="text-gray-400 mb-2">September 2024 to September 2025</p>
-                <p className="text-lg font-semibold mb-2 text-white">Reddit</p>
-                <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li>Implemented machine learning solutions to enhance content quality and user experience at scale, improving community moderation systems.</li>
-                </ul>
-                <h4 className="text-lg font-semibold mb-2 text-white">Key Achievements:</h4>
-                <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li>Built custom LLMs for content moderation achieving 0.71 global precision with 0.06 improvement in high-risk detection.</li>
-                  <li>Developed Reddit's first subreddit rules generator and podcast generator (CEO-commissioned project, "Big Thinking" prize nominee).</li>
-                  <li>Created React/FastAPI tools for data annotation workflows and dynamic visualizations.</li>
-                  <li>Selected for Google's Gen AI initiative, building RAG systems for medical patient-trial matching.</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gray-900 border-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-sm">
-              <CardContent className="p-4 sm:p-6">
-                <h3 className="text-xl font-semibold mb-2 text-white">Alpha/Beta Tester (On-Call)</h3>
-                <p className="text-gray-400 mb-2">October 2024 to September 2025</p>
-                <p className="text-lg font-semibold mb-2 text-white">Anthropic</p>
-                <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li>Product tested: Claude Code (May "25), Haiku 3.5 (Oct "24), Claude Desktop (Oct "24).</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gray-900 border-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-sm">
-              <CardContent className="p-4 sm:p-6">
-                <h3 className="text-xl font-semibold mb-2 text-white">Senior AI/ML Engineer</h3>
-                <p className="text-gray-400 mb-2">January 2024 to July 2024</p>
-                <p className="text-lg font-semibold mb-2 text-white">ISx4</p>
-                <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li>Led all NLP/AI initiatives across product teams and mentored engineering teams.</li>
-                </ul>
-                <h4 className="text-lg font-semibold mb-2 text-white">Key Achievements:</h4>
-                <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li>Built offline RAG system achieving 84% accuracy while reducing model size by 66% (500MB→170MB).</li>
-                  <li>Developed ML pipelines for email classification (86% accuracy, +23% improvement) and fraud detection (87% accuracy).</li>
-                  <li>Co-authored AI research papers with Queen's University Belfast and DKIT.</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gray-900 border-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-sm">
-              <CardContent className="p-4 sm:p-6">
-                <h3 className="text-xl font-semibold mb-2 text-white">ML & NLP Engineer</h3>
-                <p className="text-gray-400 mb-2">October 2022 to January 2024</p>
-                <p className="text-lg font-semibold mb-2 text-white">Loughborough University | SVGC Ltd</p>
-                <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li>Led Knowledge Transfer Partnership delivering NLP solutions for classified government clients</li>
-                  <li>Conducted thorough requirements analyses, user experience assessments, and stakeholder presentations to inform, train, evaluate, test and containerise NLP/ML solutions for classified government use cases.</li>
-                </ul>
-                <h4 className="text-lg font-semibold mb-2 text-white">Key Achievements:</h4>
-                <ul className="list-disc list-inside mb-4 text-gray-300">
-                <li>Built secure offline RAG system achieving 84% retrieval accuracy on classified documents.</li>
-                <li>Developed GDPR detection system (78% F1-score) and topic modeling for 20+ document clusters.</li>
-                <li>Managed end-to-end ML pipeline from requirements to containerized deployment.</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-gray-900 border-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-sm">
-              <CardContent className="p-4 sm:p-6">
-                <h3 className="text-xl font-semibold mb-2 text-white">NLP Researcher</h3>
-                <p className="text-gray-400 mb-2">October 2020 to October 2022</p>
-                <p className="text-lg font-semibold mb-2 text-white">Lancaster University</p>
-                <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li>Volunteered to contribute in NLP model development for funded linguistics research projects.</li>
-                </ul>
-                <h4 className="text-lg font-semibold mb-2 text-white">Key Achievements:</h4>
-                <ul className="list-disc list-inside mb-4 text-gray-300">
-                  <li>Built medieval authorship attribution system (63% F1-score) analyzing 15th-century manuscripts.</li>
-                  <li>Developed social media sentiment analysis achieving 84% F1-score across 100K+ posts (+6% improvement).</li>
-                  <li>Enhanced colloquialism and context detection by 15% using BERT fine-tuning techniques.</li>
-                </ul>
-              </CardContent>
-            </Card>
+            ))}
           </div>
-        </Section>
+        </section>
 
-        <Section id="education" title="Education">
-          <Card className="bg-gray-900 border-gray-800 bg-opacity-70 backdrop-filter backdrop-blur-sm">
-            <CardHeader>
-              <CardTitle className="text-white">Master's degree in Computational Linguistics & Discourse Studies</CardTitle>
-              <p className="text-sm text-gray-400">Lancaster University</p>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-300">
-                Areas of Focus:
-              </p>
-              <ul className="list-disc list-inside text-gray-300 mt-2">
-                <li>Natural Language Processing</li>
-                <li>Knowledge Graphs & Ontologies</li>
-                <li>Forensic Linguistics</li>
-                <li>Discourse Analysis</li>
-                <li>Corpus Linguistics</li>
-              </ul>
-            </CardContent>
-          </Card>
-        </Section>
-
-        <Section id="skills" title="Skills">
-          <SkillsSection />
-        </Section>
-      </main>
-
-      <footer className="bg-black bg-opacity-90 text-white py-6 sm:py-8 relative z-10">
-        <div className="container mx-auto px-4 text-center">
-          <div className="flex justify-center space-x-4">
-            <Button variant="secondary" size="sm" onClick={() => window.location.href = 'mailto:danielblakemorris@gmail.com'}>
-              <Mail className="h-4 w-4" />
-              <span className="sr-only">Email</span>
-            </Button>
-            <Button variant="secondary" size="sm" onClick={() => window.open('https://www.linkedin.com/in/daniel-blake-morris', '_blank')}>
-              <Linkedin className="h-4 w-4" />
-              <span className="sr-only">LinkedIn</span>
-            </Button>
-            <Button variant="secondary" size="sm" onClick={() => window.open('https://github.com/DBlakeMorris', '_blank')}>
-              <Github className="h-4 w-4" />
-              <span className="sr-only">GitHub</span>
-            </Button>
+        <section id="testimonials" style={{ padding: '7rem 2rem' }}>
+          <div style={{ maxWidth: 860, margin: '0 auto' }}>
+            <div className="section-title">Testimonials</div>
+            {testimonials.map((t, i) => (
+              <div key={i} className="testimonial">
+                <div className="testimonial-quote">"{t.quote}"</div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+                  <div><div className="testimonial-name">{t.name}</div><div className="testimonial-title">{t.title}</div></div>
+                  {t.linkedin && <button className="btn-sm" onClick={() => window.open(t.linkedin, '_blank')}><Linkedin size={11} /> Profile</button>}
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
-      </footer>
+        </section>
 
+        <footer style={{ borderTop: `1px solid ${C.border}`, padding: '2.5rem 2rem', textAlign: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
+            <button className="btn-sm" onClick={() => window.location.href = 'mailto:danielblakemorris@gmail.com'}><Mail size={11} /></button>
+            <button className="btn-sm" onClick={() => window.open('https://www.linkedin.com/in/daniel-blake-morris', '_blank')}><Linkedin size={11} /></button>
+            <button className="btn-sm" onClick={() => window.open('https://github.com/DBlakeMorris', '_blank')}><Github size={11} /></button>
+          </div>
+          <div style={{ fontFamily: "'Cinzel', serif", fontSize: '0.48rem', letterSpacing: '0.32em', color: C.parchmentDim, textTransform: 'uppercase' }}>© MMXXVI &nbsp;·&nbsp; D.B. Morris</div>
+        </footer>
+      </div>
       <BackToTopButton />
-    </motion.div>
+    </>
   )
 }

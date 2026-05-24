@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 const SimpleRotatingTitle: React.FC = () => {
   const titles: string[] = [
-    "AI Solutions Architect",
-    "Agentic AI Engineer",
+    "Lead AI Solutions Engineer",
+    "Applied AI Engineer",
     "Forward Deployed Engineer",
   ];
   
