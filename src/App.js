@@ -30,9 +30,20 @@ const C = {
 
 // ── Splash ─────────────────────────────────────────────────────────────────────
 const SplashScreen = ({ onDone }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => { 
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     const t = setTimeout(onDone, 3000); 
-    return () => clearTimeout(t) 
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener('resize', checkMobile);
+    }
   }, [onDone])
 
   return (
@@ -55,33 +66,35 @@ const SplashScreen = ({ onDone }) => {
         2. 22% Right / 22% Left: Left completely untouched since they are already perfect.
         3. 14% Bottom: Cuts extra deep to fully eliminate that thicker bottom border.
       */}
-      <div style={{ 
-        width: '100%', 
-        maxWidth: '560px', 
-        padding: '0 2rem', 
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        clipPath: 'inset(9% 22% 14% 22%)' // Targeted vertical cropping parameters
-      }}>
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          disablePictureInPicture
-          style={{ 
-            width: '100%', 
-            height: 'auto', 
-            objectFit: 'contain',
-            filter: 'contrast(1.4) brightness(0.78) grayscale(1)',
-            mixBlendMode: 'screen'
-          }}
-        >
-          <source src={require('./assets/logos/peacock_design.mp4')} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
+      {!isMobile && (
+        <div style={{ 
+          width: '100%', 
+          maxWidth: '560px', 
+          padding: '0 2rem', 
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          clipPath: 'inset(9% 22% 14% 22%)' // Targeted vertical cropping parameters
+        }}>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            disablePictureInPicture
+            style={{ 
+              width: '100%', 
+              height: 'auto', 
+              objectFit: 'contain',
+              filter: 'contrast(1.4) brightness(0.78) grayscale(1)',
+              mixBlendMode: 'screen'
+            }}
+          >
+            <source src={require('./assets/logos/peacock_design.mp4')} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      )}
 
       {/* Elegant Parchment Bottom Loading Bar */}
       <motion.div
