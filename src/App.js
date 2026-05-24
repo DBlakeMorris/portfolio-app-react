@@ -11,13 +11,14 @@ import googleLogo from './assets/logos/google_logo_icon_169090.webp'
 import hgLogo from './assets/logos/Hugging_Face_White_Logo.webp'
 import ieeeLogo from './assets/logos/logo-masterbrand-white-transparent.webp'
 import loughboroughLogo from './assets/logos/Loughborough-Univeristy-Lboro-Logo.png'
-import oxfordLogo from './assets/logos/oxford-university-logo-university-of-oxford-college-school-student-education-united-kingdom-crest-png-clipart.jpg'
 import queensLogo from "./assets/logos/Queens_Red_Log.svg.png"
 import rssLogo from './assets/logos/Royal_Statistical_Society_logo.svg.png'
 import innovateLogo from './assets/logos/UKRI_IUK-Logo_Horiz-RGB.png'
 import lancasterLogo from './assets/logos/bg-logo-white.png'
 import aclLogo from './assets/logos/Association_for_Computational_Linguistics_logo.svg.png'
 import fcdoLogo from './assets/logos/FCO-logo-footer-trans.png'
+import pineconeLogo from './assets/logos/pinecone-logo-white.webp'
+import psiLogo from './assets/logos/PSI-Logo-Color.png'
 
 const C = {
   racing:'#081808', green:'#152e15',
@@ -324,6 +325,8 @@ const logos = [
   { src: queensLogo, alt: "Queen's University Belfast" },
   { src: rssLogo, alt: 'Royal Statistical Society' }, { src: innovateLogo, alt: 'Innovate UK' },
   { src: lancasterLogo, alt: 'Lancaster University' }, { src: aclLogo, alt: 'ACL' },
+  { src: pineconeLogo, alt: 'Pinecone' },
+  { src: psiLogo, alt: 'PSI Basel' },
   { src: fcdoLogo, alt: 'FCDO Services' },
 ]
 const LogoReel = () => {
@@ -447,7 +450,7 @@ const AboutPage = () => (
           {[
             { target: 46, prefix: '$', suffix: 'M+', label: 'AI Engagements' },
             { target: 10, prefix: '', suffix: '', label: 'Publications' },
-            { target: 6, prefix: '', suffix: '+', label: 'Speaking Events' },
+            { target: 8, prefix: '', suffix: '+', label: 'Speaking Events' },
             { target: 6, prefix: '', suffix: '+', label: 'Years Experience' },
           ].map((s, i) => (
             <div key={i} className="stat-card-v2">
@@ -510,8 +513,18 @@ const products = [
       'Precision Dietetics — localized supply-chain integrated recipe generation accounting for micro-constraints and zero-waste macro logic'
     ] 
   },
-  { name: 'GDPR Taxonomist', tagline: 'Secure Document Classification for Classified Environments', description: 'Transformer-based SRS system with multi-head attention. Deployed into 10 Downing Street, Home Office and Cabinet Office via FCDO Services.', useCases: ['Classified government document processing', 'GDPR compliance detection at scale'] },
-  { name: 'DSR Executive', tagline: 'Offline Retrieval-Augmented Generation for Classified Use', description: 'Offline quantized RAG infrastructure for classified document analysis, achieving incredible accuracy on expert-validated queries while ensuring air-gapped security. Reduced document analysis from hours to minutes.', useCases: ['Classified government intelligence', 'Secure offline document analysis'] },
+  { 
+  name: 'DSR Executive', 
+  tagline: 'Sovereign Retrieval-Augmented Generation for Air-Gapped Environments', 
+  description: 'Offline quantized RAG infrastructure engineered for classified document analysis. Achieved zero-leakage enterprise compliance and high semantic fidelity on expert-validated target queries, compressing document intelligence workflows from hours to minutes.', 
+  useCases: ['Sovereign government intelligence', 'Air-gapped enterprise knowledge graphs'] 
+  },
+  { 
+  name: 'GDPR Taxonomist', 
+  tagline: 'Automated Sensitivity Classification for Crown Networks', 
+  description: 'Transformer-based Document Taxonomy and Classification framework utilizing custom multi-head attention heads. Formally deployed across 10 Downing Street, the Home Office, and the Cabinet Office via FCDO Services infrastructure.', 
+  useCases: ['Classified document lifecycle automation', 'Sovereign GDPR compliance auditing'] 
+  },
   { 
     name: 'Policy Guardian', 
     tagline: 'Deterministic Compliance Verification Engine', 
@@ -545,11 +558,13 @@ const ProductsPage = () => (
 )
 
 const speakingEvents = [
-  { event: 'Swiss Biotech Day 2026', topic: "Agentic AI in Clinical Trials: The Real Challenge Isn't Automation — It's Trust", location: 'Basel, Switzerland' },
-  { event: 'AIAI GenAI Summit London 2026', topic: 'Applied Agentic AI in the Enterprise', location: 'London, UK' },
+  { event: 'Swiss Biotech Day 2026', topic: "Agentic AI in Clinical Trials", location: 'Basel, Switzerland' },
+  { event: 'AI Accelerator Institute GenAI Summit London 2026', topic: 'Applied Agentic AI in the Enterprise', location: 'London, UK' },
+  { event: 'Build Agents with Trusted Context 2026', topic: 'Graph-Guided Intelligence Discovery', location: 'London, UK' },
+  { event: 'From Data to Decisions: The Contextual Data Layer For Enterprise AI 2026', topic: 'Graph-Guided Intelligence Discovery', location: 'Cologne, Germany' },
   { event: 'NASIC AI Workshop 2026', topic: 'Graph-Guided Intelligence Discovery', location: 'Ohio, USA' },
   { event: 'IEEE International Conference on Big Data 2025', topic: 'Named Entity Recognition for Historical Corpora', location: 'Macau, China' },
-  { event: 'AIAI NLP and Computer Vision 2023', topic: 'NLP in Production Environments', location: 'London, UK' },
+  { event: 'AI Accelerator Institute NLP and Computer Vision Summit London 2023', topic: 'NLP in Production Environments', location: 'London, UK' },
   { event: 'Pegasus Lounge F1 Silverstone 2023', topic: 'AI & Data in High-Performance Environments', location: 'Silverstone, UK' },
 ]
 
