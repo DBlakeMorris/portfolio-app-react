@@ -1,13 +1,26 @@
 {
   "files": {
-    "main.css": "/portfolio-app-react/static/css/main.e4b2ed7a.css",
-    "main.js": "/portfolio-app-react/static/js/main.023849c9.js",
+    "main.css": "/portfolio-app-react/static/css/main.024ead1d.css",
+    "main.js": "/portfolio-app-react/static/js/main.d5b70a3b.js",
+    "static/media/oxford-university-logo-university-of-oxford-college-school-student-education-united-kingdom-crest-png-clipart.jpg": "/portfolio-app-react/static/media/oxford-university-logo-university-of-oxford-college-school-student-education-united-kingdom-crest-png-clipart.1704454b9603417777b4.jpg",
+    "static/media/Queens_Red_Log.svg.png": "/portfolio-app-react/static/media/Queens_Red_Log.svg.dd57afb79966da9b7c18.png",
+    "static/media/FCO-logo-footer-trans.png": "/portfolio-app-react/static/media/FCO-logo-footer-trans.89b3e429101f69edb955.png",
+    "static/media/Royal_Statistical_Society_logo.svg.png": "/portfolio-app-react/static/media/Royal_Statistical_Society_logo.svg.b3a298d54e1fa50cea5e.png",
+    "static/media/Loughborough-Univeristy-Lboro-Logo.png": "/portfolio-app-react/static/media/Loughborough-Univeristy-Lboro-Logo.43e4ec8f8fa835821f8e.png",
+    "static/media/bg-logo-white.png": "/portfolio-app-react/static/media/bg-logo-white.c7f7c6819fe051d32b9f.png",
+    "static/media/Hugging_Face_White_Logo.webp": "/portfolio-app-react/static/media/Hugging_Face_White_Logo.1349733b59607f62dac9.webp",
+    "static/media/Reddit-New-2023-Logo-Vector.svg-.png": "/portfolio-app-react/static/media/Reddit-New-2023-Logo-Vector.svg-.34213fdd18d468f0f679.png",
+    "static/media/anthropic-text.png": "/portfolio-app-react/static/media/anthropic-text.f85b32a6ff9b70555493.png",
+    "static/media/UKRI_IUK-Logo_Horiz-RGB.png": "/portfolio-app-react/static/media/UKRI_IUK-Logo_Horiz-RGB.9b73d423c1fb0e3e1bd1.png",
+    "static/media/google_logo_icon_169090.webp": "/portfolio-app-react/static/media/google_logo_icon_169090.2b015625930ef5bd9a12.webp",
+    "static/media/logo-masterbrand-white-transparent.webp": "/portfolio-app-react/static/media/logo-masterbrand-white-transparent.221745839bd56858ffbe.webp",
+    "static/media/favicon.svg": "/portfolio-app-react/static/media/favicon.0638ec7f7d57a8e06438924598bd0661.svg",
     "index.html": "/portfolio-app-react/index.html",
-    "main.e4b2ed7a.css.map": "/portfolio-app-react/static/css/main.e4b2ed7a.css.map",
-    "main.023849c9.js.map": "/portfolio-app-react/static/js/main.023849c9.js.map"
+    "main.024ead1d.css.map": "/portfolio-app-react/static/css/main.024ead1d.css.map",
+    "main.d5b70a3b.js.map": "/portfolio-app-react/static/js/main.d5b70a3b.js.map"
   },
   "entrypoints": [
-    "static/css/main.e4b2ed7a.css",
-    "static/js/main.023849c9.js"
+    "static/css/main.024ead1d.css",
+    "static/js/main.d5b70a3b.js"
   ]
 }
