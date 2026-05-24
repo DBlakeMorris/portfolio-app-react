@@ -360,13 +360,10 @@ const AboutPage = () => (
 
         <div style={{ marginBottom: '3rem' }}>
           <p style={{ fontSize: '1.15rem', lineHeight: 1.85, color: C.cream, marginBottom: '1.5rem' }}>
-            AI Engineering Leader and Solutions Architect with 6+ years delivering enterprise-scale AI systems across Fortune 500 companies and UK government entities including 10 Downing Street.
+            AI Engineering Leader and Solutions Architect specializing in enterprise-scale intelligence platforms, graph neural networks, and mission-critical systems across Fortune 500 companies, Silicon Valley tech giants, and UK sovereign entities.
           </p>
           <p style={{ fontSize: '1.05rem', lineHeight: 1.8, color: C.creamDim, marginBottom: '1.5rem' }}>
-            Currently Lead Solutions Engineer — Applied AI, EMEA at Arango, founding and leading the Innovation Lab — building Contextus, Sentinel and Arbiter, a suite of graph-guided agentic AI platforms. Previously at Reddit, architecting LLM infrastructure serving millions of users.
-          </p>
-          <p style={{ fontSize: '1rem', lineHeight: 1.8, color: C.creamDim, marginBottom: '2rem' }}>
-            $46M+ in successful AI engagements. Published across IEEE, IGI Global and ArangoDB. Featured speaker at AIAI, NASIC, IEEE Big Data and Swiss Biotech Day 2026.
+            Currently Lead Solutions Engineer — Applied AI, EMEA at Arango, where I founded and direct the Innovation Lab, engineering the enterprise agentic suites Contextus, Sentinel, and Arbiter. My background spans architecting large-scale LLM infrastructure at Reddit serving millions of users, engineering classified text classification systems for 10 Downing Street, and serving as CTO of a stealth agentic AI startup through to its successful IP acquisition.
           </p>
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
             <button className="btn-sm" onClick={() => window.open('https://www.linkedin.com/in/daniel-blake-morris', '_blank')}><Linkedin size={12} /> LinkedIn</button>
@@ -398,10 +395,33 @@ const products = [
   { name: 'Contextus', tagline: 'Graph-Guided Agentic Discovery', description: "Contextus goes beyond RAG. It trains a GNN over a domain knowledge graph to surface latent connections that don't exist explicitly in any document — inferring unknown relationships from the structure of the graph itself. A LangGraph ReAct agent then reasons over multi-hop traversal results, delivering explainable, relationship-aware answers. Domain-agnostic by design: swap the knowledge graph, keep the architecture.", useCases: ['Intelligence & Defence — non-obvious entity connections across datasets', 'Life Sciences — drug-target repurposing via latent relationship discovery', 'Enterprise Knowledge — inferring relationships between documents, topics, and risk domains'] },
   { name: 'Sentinel', tagline: 'A Temporal and Living Impact Analysis', description: "Live network telemetry streams continuously into Arango — the graph is alive, mutating in real time. Sentinel monitors emerging structural patterns, calculates blast radius instantly on failure events, and reasons counterfactually. Monte Carlo simulations rank the most likely future failure paths before they happen. Engineers get a natural language incident report, not a raw query result.", useCases: ['Telecoms — live topology monitoring and reactive impact analysis across Network Digital Twins', 'Supply chain — detecting cascading disruption across multi-tier supplier networks', 'Critical infrastructure — power grids, water networks, transport systems'] },
   { name: 'Arbiter', tagline: 'Causal Graph Reasoning', description: "Where Contextus finds unknown relationships and Sentinel predicts cascading failure, Arbiter determines why things happen — distinguishing genuine cause and effect from coincidental correlation. It constructs a causal DAG within Arango and applies Pearl's do-calculus to reason over directed causal paths. This isn't pattern matching. This is machine causation.", useCases: ['Telecoms — true root cause analysis, beyond blast radius to the originating causal chain', 'Pharma — determining whether a drug intervention caused an outcome vs. correlating with it', 'Financial services — causal attribution of market events and portfolio contagion'] },
-  { name: 'Subreddit Constitution Generator', tagline: 'AI-Powered Community Policy Generation', description: 'Built at Reddit — the first subreddit rules generator at enterprise scale, handling thousands of daily requests with automated policy generation. CEO-commissioned project and "Big Thinking" prize nominee.', useCases: ['Community moderation at scale', 'Automated policy generation across thousands of subreddits'] },
+  { 
+    name: 'Subreddit Constitution Generator', 
+    tagline: 'Algorithmic Community Governance Architecture', 
+    description: 'A high-throughput generative policy orchestration platform commissioned directly by the Reddit executive leadership team. Engineered to automate community governance protocols at global scale, the engine parses multi-variable localized behavioral metrics to dynamically synthesize custom, high-fidelity algorithmic bylaws. Built to sit natively within the core moderation pipeline, the system handles thousands of concurrent production runtime requests, establishing foundational policy frameworks across millions of active community touchpoints.', 
+    useCases: [
+      'Automated Trust & Safety Infrastructure — deploying dynamic, context-aware policy generation architectures across high-volume digital communities', 
+      'Scalable Platform Governance — mitigating moderation bottlenecks through deep text-parsing pipelines and automated localized compliance generation'
+    ] 
+  },
+  { 
+    name: 'DL: Tessellate', tagline: 'Knowledge Graph-Driven Predictive Nutrition Architecture', description: 'An agentic recipe and dietary engine powered by a graph-structured domain database. It cross-references real-time bio-composition telemetries from David Lloyd Boditrax scans to generate hyper-personalized, goal-optimized nutritional vectors. The engine dynamically mitigates gym member churn by programmatically lowering dieting friction—synthesizing multi-variable logic constraints including complex allergen profiles, localized ingredient sourcing logistics, and sustainability algorithms designed to neutralize household food waste.', 
+    useCases: [
+      'Commercial Fitness Operations — automated, hyper-personalized retention engines mapped to biometric data hardware', 
+      'Precision Dietetics — localized supply-chain integrated recipe generation accounting for micro-constraints and zero-waste macro logic'
+    ] 
+  },
   { name: 'GDPR Taxonomist', tagline: 'Secure Document Classification for Classified Environments', description: 'Transformer-based SRS system with multi-head attention. Deployed into 10 Downing Street, Home Office and Cabinet Office via FCDO Services.', useCases: ['Classified government document processing', 'GDPR compliance detection at scale'] },
   { name: 'DSR Executive', tagline: 'Offline Retrieval-Augmented Generation for Classified Use', description: 'Offline quantized RAG infrastructure for classified document analysis, achieving incredible accuracy on expert-validated queries while ensuring air-gapped security. Reduced document analysis from hours to minutes.', useCases: ['Classified government intelligence', 'Secure offline document analysis'] },
-  { name: 'Policy Guardian', tagline: 'Enterprise Policy Validation', description: 'Context-aware, document-grounded RAG assistant for corporate policy validation.', useCases: ['Corporate policy validation', 'Regulated environment document analysis', 'Financial institution compliance'] },
+  { 
+    name: 'Policy Guardian', 
+    tagline: 'Deterministic Compliance Verification Engine', 
+    description: 'A context-aware, document-grounded RAG architecture engineered for automated enterprise policy verification. The system ingestion pipeline extracts structural primitives from complex regulatory handbooks and corporate guidelines, utilizing a strict semantic guardrail framework to map multi-document logic dependencies. By enforcing absolute mathematical grounding over unstructured documents, it systematically eliminates hallucinatory compliance risk within highly regulated operating environments.', 
+    useCases: [
+      'Regulatory Change Management — programmatic auditing of cross-departmental policy alignment against moving legislative frameworks', 
+      'Institutional Risk Mitigation — automated cross-referencing of transactional and structural compliance vectors within Tier-1 financial entities'
+    ] 
+  },
 ]
 
 const ProductsPage = () => (
