@@ -568,9 +568,9 @@ const speakingEvents = [
   { event: 'NASIC Signal & Structure Lab 2026', topic: 'Building Agentic Pipelines in Air-Gapped Environments with Graph-Guided Discovery', location: 'Ohio, USA' },
   { event: 'IEEE International Conference on Big Data 2025', topic: 'Beyond Modern Text: Named Entity Recognition for Historical Corpora', location: 'Macau, China' },
   { event: 'Reddit Product Showcase 2025', topic: 'Teaching Reddit to Write Its Own Rules - The Subreddit Constitution Generator: LLM-Powered Community Governance at Scale', location: 'New York, USA' },
-  { event: 'AI Accelerator Institute - AI and Computer Vision Summit London 2023', topic: 'From Research to Runtime: LLMs at Enterprise Scale', location: 'London, UK' },
   { event: 'Technical Summit 2024', topic: 'Supervised to Self-Supervised: Fine-Tuning LLMs at the Frontier', location: 'Belfast, Northern Ireland' },
   { event: 'ISx4 Product Showcase 2024', topic: 'Policy Guardian: Secure and Auditable Retrieval for Policy-Sensitive Environments', location: 'Manchester, UK' },
+  { event: 'AI Accelerator Institute - AI and Computer Vision Summit London 2023', topic: 'From Research to Runtime: LLMs at Enterprise Scale', location: 'London, UK' },
   { event: 'Pegasus Lounge F1 Silverstone 2023', topic: 'AI Modelling & Data Management in Classified Environments', location: 'Silverstone, UK' },
   { event: 'HMGCC Technical Briefing 2023', topic: 'Oracy/Speech Classification in Secure Government Environments', location: 'Hanslope Park, UK' },
 ]
