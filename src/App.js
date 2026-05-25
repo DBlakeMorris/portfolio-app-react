@@ -436,7 +436,7 @@ const AboutPage = () => (
 
         <div style={{ marginBottom: '3rem' }}>
           <p style={{ fontSize: '1.15rem', lineHeight: 1.85, color: C.cream, marginBottom: '1.5rem' }}>
-            AI Engineering Leader and Solutions Architect specializing in enterprise-scale intelligence platforms, graph neural networks, and mission-critical systems across Fortune 500 companies, Silicon Valley tech giants, and UK sovereign entities.
+            AI Engineering Leader and Solutions Architect specializing in enterprise-scale intelligence platforms, graph neural networks, and mission-critical systems across Fortune 500 companies, Silicon Valley tech giants, and government entities.
           </p>
           <p style={{ fontSize: '1.05rem', lineHeight: 1.8, color: C.creamDim, marginBottom: '1.5rem' }}>
             Currently Lead Solutions Engineer — Applied AI, EMEA at Arango, where I founded and direct the Innovation Lab, engineering the enterprise agentic suites Contextus, Sentinel, and Arbiter. My background spans architecting large-scale LLM infrastructure at Reddit serving millions of users, engineering classified text classification systems for 10 Downing Street, and serving as CTO of a stealth agentic AI startup through to its successful IP acquisition.
@@ -559,14 +559,14 @@ const ProductsPage = () => (
 )
 
 const speakingEvents = [
-  { event: 'Swiss Biotech Day 2026', topic: "Agentic AI in Clinical Trials", location: 'Basel, Switzerland' },
-  { event: 'AI Accelerator Institute GenAI Summit London 2026', topic: 'Applied Agentic AI in the Enterprise', location: 'London, UK' },
+  { event: 'Swiss Biotech Day 2026', topic: "Agentic AI in Clinical Trials and its Future", location: 'Basel, Switzerland' },
+  { event: 'AI Accelerator Institute - GenAI Summit London 2026', topic: 'Applied Agentic AI in the Enterprise', location: 'London, UK' },
   { event: 'Activating Arango Webinar 2026', topic: 'Build Agents with Trusted Context', location: 'London, UK' },
   { event: 'From Data to Decisions Webinar 2026', topic: 'The Contextual Data Layer For Enterprise AI', location: 'Cologne, Germany' },
-  { event: 'NASIC AI Workshop 2026', topic: 'Building Agentic Pipelines with Graph-Guided Intelligence Discovery', location: 'Ohio, USA' },
+  { event: 'NASIC Signal & Structure Lab 2026', topic: 'Building Agentic Pipelines in Air-gapped Environments with Graph-Guided Discovery', location: 'Ohio, USA' },
   { event: 'IEEE International Conference on Big Data 2025', topic: 'Named Entity Recognition for Historical Corpora', location: 'Macau, China' },
-  { event: 'AI Accelerator Institute NLP and Computer Vision Summit London 2023', topic: 'NLP in Production Environments', location: 'London, UK' },
-  { event: 'Pegasus Lounge F1 Silverstone 2023', topic: 'AI & Data in Classified Environments', location: 'Silverstone, UK' },
+  { event: 'AI Accelerator Institute - NLP and Computer Vision Summit London 2023', topic: 'NLPs Evolution in Production Environments', location: 'London, UK' },
+  { event: 'Pegasus Lounge F1 Silverstone 2023', topic: 'AI Modelling & Data Management in Classified Environments', location: 'Silverstone, UK' },
 ]
 
 const SpeakingPage = () => (
@@ -606,7 +606,7 @@ const publications = [
   { title: "Agentic AI in Clinical Trials: The Real Challenge Isn't Automation — It's Trust", publisher: 'Arango', date: 'May 2026' },
   { title: 'The Missing Layer in OpenClaw Agent Architectures: Contextual Data', publisher: 'Arango', date: 'Apr 2026' },
   { title: 'Designing Hybrid Systems with LightRAG and Arango', publisher: 'Arango', date: 'Mar 2026' },
-  { title: 'Psychology, Ethics, and AI in Online Higher Education', publisher: 'IGI Global Scientific Publishing', date: 'Feb 2026' },
+  { title: 'Psychology, Ethics, and AI in Online Higher Education: Chapter 6 - A Survey of the Applications of LLMs in the Educational Sector', publisher: 'IGI Global Scientific Publishing', date: 'Feb 2026' },
   { title: 'Enhanced Old English NER via Morphology-Aware Analysis, Cross-Germanic Transfer, and Domain-Specific Patterns', publisher: 'IEEE', date: 'Dec 2025' },
   { title: 'Nerthus-Project/Old_English-OEDT-NER', publisher: 'Hugging Face', date: 'Sep 2025' },
   { title: "Uncovering Margaret Paston's Hidden Voice: Forensic Linguistics and 500-Year-Old Letters", publisher: 'Medievalists.net', date: 'Jun 2025' },
