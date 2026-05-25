@@ -19,6 +19,7 @@ import aclLogo from './assets/logos/Association_for_Computational_Linguistics_lo
 import fcdoLogo from './assets/logos/FCO-logo-footer-trans.png'
 import pineconeLogo from './assets/logos/pinecone-logo-white.webp'
 import psiLogo from './assets/logos/PSI-Logo-Color.png'
+import peacockVideo from './assets/logos/peacock_design.mp4'
 
 const C = {
   racing:'#081808', green:'#152e15',
@@ -93,7 +94,7 @@ const SplashScreen = ({ onDone }) => {
             transform: 'translateX(15px)'
           }}
         >
-          <source src={require('./assets/logos/peacock_design.mp4')} type="video/mp4" />
+          <source src={peacockVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
@@ -702,6 +703,13 @@ export default function Portfolio() {
     handleResize()
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+    useEffect(() => {
+    const v = document.createElement('video')
+    v.src = peacockVideo
+    v.preload = 'auto'
+    v.load()
   }, [])
 
   return (
