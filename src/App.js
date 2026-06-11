@@ -439,7 +439,7 @@ const AboutPage = () => (
             AI Engineering Leader and Solutions Architect specializing in enterprise-scale intelligence platforms, graph neural networks, and mission-critical systems across Fortune 500 companies, Silicon Valley tech giants, and government entities.
           </p>
           <p style={{ fontSize: '1.05rem', lineHeight: 1.8, color: C.creamDim, marginBottom: '1.5rem' }}>
-            Currently Lead Solutions Engineer — Applied AI, EMEA at Arango, where I founded and direct the Innovation Lab, engineering the enterprise agentic suites Contextus, Sentinel, and Arbiter. My background spans architecting large-scale LLM infrastructure at Reddit serving millions of users, engineering classified text classification systems for 10 Downing Street, and serving as CTO of a stealth agentic AI startup through to its successful IP acquisition.
+            Currently Lead Solutions Engineer — Applied AI, EMEA at Arango, where I founded and direct the Innovation Lab, engineering the enterprise agentic suites Contextus, Sentinel, and Arbiter. My background spans architecting large-scale LLM infrastructure at Reddit serving 100M+ daily active users, engineering classified text classification systems for 10 Downing Street, and serving as CTO of a stealth agentic AI startup through to its successful IP acquisition.
           </p>
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
             <button className="btn-sm" onClick={() => window.open('https://www.linkedin.com/in/daniel-blake-morris', '_blank')}><Linkedin size={12} /> LinkedIn</button>
@@ -468,72 +468,88 @@ const AboutPage = () => (
 )
 
 const products = [
- { 
-    name: 'Contextus', 
-    tagline: 'Graph-Neural Agentic Discovery Architecture', 
-    description: 'An advanced cognitive framework designed to transcend basic vector-search RAG paradigms. The architecture trains a Graph Neural Network (GNN) over structural domain knowledge bases to uncover and infer latent, non-obvious relationships embedded within graph topologies. An integrated LangGraph ReAct orchestration agent executes precise, multi-hop path traversals over the structural inferences, generating explainable, context-weighted intelligence vectors. The entire pipeline is completely domain-agnostic, enabling instantaneous structural adaptation simply by hot-swapping the underlying knowledge database.', 
+  {
+    name: 'Contextus',
+    tagline: 'Graph-Neural Agentic Discovery',
+    provenance: 'Built at the Arango Innovation Lab',
+    description: 'A discovery engine that goes beyond vector-search RAG. A graph neural network (GAT/GraphSAGE) is trained over the domain knowledge graph to infer latent relationships that were never explicitly queried; a LangGraph ReAct agent then traverses those inferences with multi-hop AQL, returning explainable, path-grounded answers. The pipeline is domain-agnostic — swap the underlying graph and it adapts. Deployed across enterprise datasets of 9M+ nodes and 14M+ edges.',
     useCases: [
-      'Intelligence & Defence — mapping non-obvious entity networks and hidden adversarial connections across heterogeneous state datasets', 
-      'Life Sciences — accelerating drug-target repurposing and molecular interactions via latent structural path discovery', 
-      'Enterprise Knowledge — synthesizing latent risk dependencies and thematic correlations across disconnected document domains'
-    ] 
+      'Intelligence & Defence — surfacing non-obvious entity networks across heterogeneous datasets',
+      'Life Sciences — accelerating drug-target repurposing through latent structural path discovery',
+      'Enterprise Knowledge — connecting risk dependencies across disconnected document domains'
+    ]
   },
-  { 
-    name: 'Sentinel', 
-    tagline: 'Real-Time Temporal & Network Topology Impact Analyzer', 
-    description: 'A high-throughput telemetry processing pipeline engineered to ingest streaming network state data into live, mutating graph structures in real time. Sentinel continuously monitors structural graph drift, instantly computing exact cascading blast-radii upon systemic network failure triggers. Integrated counterfactual reasoning models combine with recursive Monte Carlo simulations to preemptively isolate and rank highly probable future failure vectors, transforming complex structural alerts into highly actionable, natural language incident post-mortems.', 
+  {
+    name: 'Sentinel',
+    tagline: 'Network Digital Twin & Predictive Failure Modelling',
+    provenance: 'Built at the Arango Innovation Lab',
+    description: 'A real-time digital twin for live network infrastructure. Streaming telemetry is ingested into a continuously updated graph; when a failure triggers, Sentinel computes the exact cascade blast radius in seconds rather than minutes. Monte Carlo simulation over the live topology ranks probable future failure paths before they occur, and structural alerts are rendered as plain-language incident analyses. Flagship engagement at Orange (France Télécom).',
     useCases: [
-      'Telecom Operations — real-time topology mapping and active cascade impact analysis across complex Network Digital Twins', 
-      'Supply Chain Resilience — detecting structural fragility and predicting compounding bottlenecks across multi-tier global supplier networks', 
-      'Critical Infrastructure — mapping predictive failure paths and vulnerability matrices across sovereign power grids and transport networks'
-    ] 
+      'Telecom Operations — live topology mapping and cascade impact analysis',
+      'Supply Chain Resilience — predicting compounding bottlenecks across multi-tier supplier networks',
+      'Critical Infrastructure — failure-path modelling for power grids and transport networks'
+    ]
   },
-  { 
-    name: 'Arbiter', 
-    tagline: 'Causal Directed Acyclic Graph (DAG) Reasoning Engine', 
-    description: 'A mathematical reasoning architecture built to systematically differentiate true cause-and-effect vectors from circumstantial data correlations. The platform maps structural data inputs into a validated causal Directed Acyclic Graph (DAG) within the graph infrastructure, programmatically applying Judea Pearl’s do-calculus calculus to compute exact causal effects across directed pathways. Moving far beyond shallow pattern-matching algorithms, Arbiter delivers true machine causation capabilities, bringing deterministic, auditable root-cause analytics to unstructured data streams.', 
+  {
+    name: 'Arbiter',
+    tagline: 'Causal Reasoning Engine',
+    provenance: 'Built at the Arango Innovation Lab',
+    description: 'A reasoning engine that separates cause from correlation. Data is mapped into a validated causal DAG, and Judea Pearl\u2019s do-calculus is applied programmatically to compute exact causal effects along directed pathways. Where pattern-matching systems report what co-occurs, Arbiter reports what actually drives what \u2014 deterministic, auditable root-cause analysis over telemetry and clinical data streams.',
     useCases: [
-      'Root-Cause Telemetry — diagnosing structural network errors beyond simple blast radius metrics to isolate the originating causal genesis', 
-      'Pharma & Clinical Analytics — quantifying deterministic clinical intervention outcomes vs. compounding environmental baseline correlations', 
-      'Systemic Financial Risk — tracing causal attribution vectors of sudden market anomalies and tracking cascading systemic portfolio contagion'
-    ] 
+      'Root-Cause Telemetry — isolating the originating cause of network failures, not just the blast radius',
+      'Pharma & Clinical Analytics — separating intervention effects from environmental baseline correlations',
+      'Systemic Financial Risk — tracing causal attribution of market anomalies and portfolio contagion'
+    ]
   },
-  { 
-    name: 'Subreddit Constitution Generator', 
-    tagline: 'Algorithmic Community Governance Architecture', 
-    description: 'A high-throughput generative policy orchestration platform commissioned directly by the Reddit executive leadership team. Engineered to automate community governance protocols at global scale, the engine parses multi-variable localized behavioral metrics to dynamically synthesize custom, high-fidelity algorithmic bylaws. Built to sit natively within the core moderation pipeline, the system handles thousands of concurrent production runtime requests, establishing foundational policy frameworks across millions of active community touchpoints.', 
+  {
+    name: 'Subreddit Constitution Generator',
+    tagline: 'LLM-Powered Community Governance at Scale',
+    provenance: 'Built at Reddit',
+    description: 'Reddit\u2019s first LLM-powered community-governance engine. The system reads each community\u2019s local norms and behaviour and generates bespoke governance policy to match \u2014 deployed natively in the moderation pipeline across 100,000+ active subreddits, handling thousands of concurrent requests daily. Presented at Reddit Product Showcase 2025, New York.',
     useCases: [
-      'Automated Trust & Safety Infrastructure — deploying dynamic, context-aware policy generation architectures across high-volume digital communities', 
-      'Scalable Platform Governance — mitigating moderation bottlenecks through deep text-parsing pipelines and automated localized compliance generation'
-    ] 
+      'Trust & Safety — context-aware policy generation across high-volume communities',
+      'Platform Governance — removing moderation bottlenecks through automated, localised policy drafting'
+    ]
   },
-  { 
-    name: 'David LLoyd - Tessellate', tagline: 'Knowledge Graph-Driven Predictive Nutrition Architecture', description: 'An agentic recipe and dietary engine powered by a graph-structured domain database. It cross-references real-time bio-composition telemetries from David Lloyd Boditrax scans to generate hyper-personalized, goal-optimized nutritional vectors. The engine dynamically mitigates gym member churn by programmatically lowering dieting friction—synthesizing multi-variable logic constraints including complex allergen profiles, localized ingredient sourcing logistics, and sustainability algorithms designed to neutralize household food waste.', 
+  {
+    name: 'Tessellate',
+    tagline: 'Knowledge-Graph Nutrition Engine for David Lloyd',
+    provenance: 'Built as CTO of a stealth startup; IP acquired 2025',
+    description: 'An agentic recipe and dietary engine built on a graph-structured food and nutrition knowledge base. Real-time body-composition data from David Lloyd\u2019s Boditrax scanners feeds personalised, goal-optimised meal planning across 100+ gym locations \u2014 handling allergen profiles, local ingredient availability, and household food-waste reduction as graph constraints rather than afterthoughts. The anchor partnership underpinned the company\u2019s acquisition.',
     useCases: [
-      'Commercial Fitness Operations — automated, hyper-personalized retention engines mapped to biometric data hardware', 
-      'Precision Dietetics — localized supply-chain integrated recipe generation accounting for micro-constraints and zero-waste macro logic'
-    ] 
+      'Commercial Fitness — biometric-driven member retention through personalised nutrition',
+      'Precision Dietetics — constraint-aware recipe generation tied to local supply'
+    ]
   },
-  { 
-  name: 'DSR Executive', 
-  tagline: 'Sovereign Retrieval-Augmented Generation for Air-Gapped Environments', 
-  description: 'Offline quantized RAG infrastructure engineered for classified document analysis. Achieved zero-leakage enterprise compliance and high semantic fidelity on expert-validated target queries, compressing document intelligence workflows from hours to minutes.', 
-  useCases: ['Sovereign government intelligence', 'Air-gapped enterprise knowledge graphs'] 
-  },
-  { 
-  name: 'GDPR Taxonomist', 
-  tagline: 'Automated Sensitivity Classification for Crown Networks', 
-  description: 'Transformer-based Document Taxonomy and Classification framework utilizing custom multi-head attention heads. Formally deployed across 10 Downing Street, the Home Office, and the Cabinet Office via FCDO Services infrastructure.', 
-  useCases: ['Classified document lifecycle automation', 'Sovereign GDPR compliance auditing'] 
-  },
-  { 
-    name: 'Policy Guardian', 
-    tagline: 'Deterministic Compliance Verification Engine', 
-    description: 'A context-aware, document-grounded RAG architecture engineered for automated enterprise policy verification. The system ingestion pipeline extracts structural primitives from complex regulatory handbooks and corporate guidelines, utilizing a strict semantic guardrail framework to map multi-document logic dependencies. By enforcing absolute mathematical grounding over unstructured documents, it systematically eliminates hallucinatory compliance risk within highly regulated operating environments.', 
+  {
+    name: 'DSR Executive',
+    tagline: 'Sovereign RAG for Air-Gapped Environments',
+    provenance: 'Delivered for HM Government via SVGC',
+    description: 'Offline, quantised RAG infrastructure for classified document analysis, designed for environments with no external network access. Compressed expert document workflows from hours to minutes with zero data leakage, validated against expert-curated query sets.',
     useCases: [
-      'Regulatory Change Management — programmatic auditing of cross-departmental policy alignment against moving legislative frameworks', 
-      'Institutional Risk Mitigation — automated cross-referencing of transactional and structural compliance vectors within Tier-1 financial entities'
-    ] 
+      'Sovereign government intelligence',
+      'Air-gapped enterprise knowledge systems'
+    ]
+  },
+  {
+    name: 'GDPR Taxonomist',
+    tagline: 'Sensitive-Content Classification for Crown Networks',
+    provenance: 'Delivered for HM Government via SVGC',
+    description: 'A transformer-based classification system for detecting sensitive content in classified documents, achieving 78% F1 on validated test sets. Formally adopted across 10 Downing Street, the Home Office, and the Cabinet Office via FCDO Services infrastructure \u2014 among the first LLM-adjacent systems deployed at this level of UK government.',
+    useCases: [
+      'Classified document lifecycle automation',
+      'Sovereign GDPR compliance auditing'
+    ]
+  },
+  {
+    name: 'Policy Guardian',
+    tagline: 'Document-Grounded Compliance Verification',
+    provenance: 'Built at ISx4; live on Azure Marketplace',
+    description: 'An air-gapped RAG architecture for enterprise policy verification, achieving 84% retrieval accuracy on expert-validated queries with a 66% model-size reduction (500MB to 170MB) through 8-bit quantisation. Every answer is grounded in the source document, eliminating hallucinated compliance guidance in regulated environments. Adopted as the foundation of ISx4\u2019s Azure Marketplace product, now live as a one-touch enterprise deployment.',
+    useCases: [
+      'Regulatory Change Management — auditing policy alignment against moving legislative frameworks',
+      'Institutional Risk — automated compliance cross-referencing in Tier-1 financial environments'
+    ]
   },
 ]
 
@@ -541,7 +557,7 @@ const ProductsPage = () => (
   <div className="page">
     <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" style={{ width: '100%' }}>
       <div className="page-inner wide">
-        <div className="section-title">Products</div>
+        <div className="section-title">Selected Work</div>
         <div className="product-grid">
           {products.map((p, i) => (
             <div key={i} className="product-card">
@@ -691,8 +707,8 @@ const TestimonialsPage = () => (
 )
 
 // ── Main ───────────────────────────────────────────────────────────────────────
-const PAGES = { home: HomePage, about: AboutPage, products: ProductsPage, speaking: SpeakingPage, publications: PublicationsPage, testimonials: TestimonialsPage }
-const NAV_ITEMS = ['home', 'about', 'products', 'speaking', 'publications', 'testimonials']
+const PAGES = { home: HomePage, about: AboutPage, work: ProductsPage, speaking: SpeakingPage, publications: PublicationsPage, testimonials: TestimonialsPage }
+const NAV_ITEMS = ['home', 'about', 'work', 'speaking', 'publications', 'testimonials']
 
 export default function Portfolio() {
   const [showSplash, setShowSplash] = useState(true)
