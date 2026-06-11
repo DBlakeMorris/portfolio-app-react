@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/portfolio-app-react/static/css/main.6911c7c0.css",
-    "main.js": "/portfolio-app-react/static/js/main.b6ae77cf.js",
+    "main.css": "/portfolio-app-react/static/css/main.fea3a87a.css",
+    "main.js": "/portfolio-app-react/static/js/main.81ad362a.js",
     "static/media/peacock_design.mp4": "/portfolio-app-react/static/media/peacock_design.4ce91e9aecfd46c3c918.mp4",
     "static/media/Queens_Red_Log.svg.png": "/portfolio-app-react/static/media/Queens_Red_Log.svg.dd57afb79966da9b7c18.png",
     "static/media/FCO-logo-footer-trans.png": "/portfolio-app-react/static/media/FCO-logo-footer-trans.89b3e429101f69edb955.png",
@@ -18,11 +18,11 @@
     "static/media/pinecone-logo-white.webp": "/portfolio-app-react/static/media/pinecone-logo-white.22a14529cd1af7460b6c.webp",
     "static/media/favicon.svg": "/portfolio-app-react/static/media/favicon.0638ec7f7d57a8e06438924598bd0661.svg",
     "index.html": "/portfolio-app-react/index.html",
-    "main.6911c7c0.css.map": "/portfolio-app-react/static/css/main.6911c7c0.css.map",
-    "main.b6ae77cf.js.map": "/portfolio-app-react/static/js/main.b6ae77cf.js.map"
+    "main.fea3a87a.css.map": "/portfolio-app-react/static/css/main.fea3a87a.css.map",
+    "main.81ad362a.js.map": "/portfolio-app-react/static/js/main.81ad362a.js.map"
   },
   "entrypoints": [
-    "static/css/main.6911c7c0.css",
-    "static/js/main.b6ae77cf.js"
+    "static/css/main.fea3a87a.css",
+    "static/js/main.81ad362a.js"
   ]
 }
